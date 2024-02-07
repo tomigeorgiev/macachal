@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Neucha&family=Sofia+Sans+Condensed:ital@0;1&display=swap");
 
+
+
 :root {
     --par-font-family: "Neucha", cursive;
+                                                
 }
+
+.markf{font-family: 'Marker Felt', sans-serif;}
 
 .par-font-fam {
     font-family: var(--par-font-family);
@@ -22,6 +27,7 @@ body {
     position: relative;
     background-image: url("./images/bubble.v03.png");
     background-size: 100% 100%;
+    font-family: var(--mark-font-family);
     height: 100vh;
     width: 100vw;
 }
@@ -110,3 +116,22 @@ body {
     width: 100vw;
     padding: 250px 350px;
 }
+.fm-l{
+    font-size: 20px;
+}
+@media only screen and (min-width: 700px) {
+    .font-large{font-size: larger;}
+    .font-lm{font-size: 21.5px}
+    .font-sm{font-size: 12px}
+    .widthsm{width: 270px; margin-left: 4.5em}
+    .pdr{padding-left: 6em;}
+    .toright{
+        margin-right: 5em;
+        padding-right: 5em;
+    }
+}
+
+.accordion-button::after{
+   display: none;
+}
+

@@ -6,6 +6,13 @@ import box from './images/box2.png'
 import Footer from './Footer'
 
 const Products = () => {
+    let basket = document.getElementById('basket')
+    const addToCart = () =>{
+        localStorage.setItem('addedToCart', 1);
+        alert('Добавено в количката');
+    }
+
+
     return (
         <div>
             <nav className="navbar navbar-dark ">
@@ -25,16 +32,16 @@ const Products = () => {
                     <img src={box} height='450vh' />
                     </div>
                     <div class="col">
-                        <h2>Maca Cards</h2>
-                        <p>Et excepteur magna velit non. Quis enim dolor laborum eiusmod est incididunt laborum eu laboris velit ea aute veniam. Velit ad ipsum aliquip excepteur et. Occaecat in occaecat laboris elit magna eu.</p>
-                        <ul>
+                        <h2 className='markf'>Maca Cards</h2>
+                        <p className='par-font-fam'>Et excepteur magna velit non. Quis enim dolor laborum eiusmod est incididunt laborum eu laboris velit ea aute veniam. Velit ad ipsum aliquip excepteur et. Occaecat in occaecat laboris elit magna eu.</p>
+                        <ul className='par-font-fam'>
                             <li>Aasd</li>
                             <li>Aasd</li>
                             <li>Aasd</li>
                             <li>Aasd</li>
                         </ul>
-                        <p>Sunt incididunt ad veniam enim commodo reprehenderit consequat irure quis esse consequat quis deserunt id.</p>
-                        <button className='btn btn-outline-light outline py-2 px-3'>Добави в количката</button>
+                        <p className='par-font-fam'>Sunt incididunt ad veniam enim commodo reprehenderit consequat irure quis esse consequat quis deserunt id.</p>
+                        <button onClick={addToCart} className='btn btn-outline-light outline py-2 px-3'>Добави в количката</button>
                     </div>
                 </div>
             </div>

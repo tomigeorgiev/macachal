@@ -1,7 +1,31 @@
+@font-face {
+  font-family: 'Marker Felt';
+  src: url('./fonts/MarkerFelt-Thin.eot');
+  src: local('Marker Felt Wide'), local('MarkerFelt-Wide'),
+      url('./fonts/MarkerFelt-Wide.eot?#iefix') format('embedded-opentype'),
+      url('./fonts/MarkerFelt-Wide.woff2') format('woff2'),
+      url('./fonts/MarkerFelt-Wide.woff') format('woff'),
+      url('./fonts/MarkerFelt-Wide.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marker Felt';
+  src: url('./fonts/MarkerFelt-Thin.eot');
+  src: local('Marker Felt Thin'), local('MarkerFelt-Thin'),
+      url('./fonts/MarkerFelt-Thin.eot?#iefix') format('embedded-opentype'),
+      url('./fonts/MarkerFelt-Thin.woff2') format('woff2'),
+      url('./fonts/MarkerFelt-Thin.woff') format('woff'),
+      url('./fonts/MarkerFelt-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
 .bot{
   position: fixed;
-  bottom: 25px;
-  right: 25px;
+  bottom: 30px;
+  right: 60px;
 }
 
 .bot a{
@@ -9,6 +33,25 @@
   color: black;
   background-color: white;
   border-radius: 50%;
-  font-size: 25px;
-  padding: 5px 8px;
+  font-size: 35px;
+  padding: 10px 13px;
+}
+
+.button-wh-pink{
+  padding: 8px 35px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-size: 19px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.button-wh-pink:hover{
+  border: 1px solid #E72F8B;
+  background-color: #E72F8B;
+}
+.lett{
+  letter-spacing: 2px;
 }

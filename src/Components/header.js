@@ -25,8 +25,8 @@ const header = () => {
                 <img src={macalogo} height='70' />
               </a>
               <form className="d-flex mx-4 right">
-                <a className="navbar-brand mx-3 par-font-fam" href="/products">Продукти</a>
-                <a className="navbar-brand mx-5 par-font-fam" href="/about">За нас</a>
+                <a className="navbar-brand mx-3 markf" href="/products">Продукти</a>
+                <a className="navbar-brand mx-3 markf" href="/about">За нас</a>
               </form>
             </div>
           </nav>
