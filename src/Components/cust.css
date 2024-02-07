@@ -1,0 +1,14 @@
+.bot{
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}
+
+.bot a{
+  border: none;
+  color: black;
+  background-color: white;
+  border-radius: 50%;
+  font-size: 25px;
+  padding: 5px 8px;
+}
