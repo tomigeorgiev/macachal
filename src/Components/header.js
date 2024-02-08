@@ -1,6 +1,7 @@
 import React from 'react'
 
-import macalogo from './images/maca.new.png'
+import Navbar from './Navbar'
+
 import bubble from './images/bubble.png'
 import cardsleft from './images/cards.new2.png'
 import cardsright from './images/cards.new.png'
@@ -18,21 +19,9 @@ const header = () => {
           <img src={cardsbox} className='cardsbox' />
           <img src={stars} className='starss' />
         </div>
-        <div className='headerback'>
-          <nav className="navbar navbar-dark ">
-            <div className="container-fluid">
-              <a className="navbar-brand mx-2" href="/">
-                <img src={macalogo} height='70' />
-              </a>
-              <form className="d-flex mx-4 right">
-                <a className="navbar-brand mx-3 markf" href="/products">Продукти</a>
-                <a className="navbar-brand mx-3 markf" href="/about">За нас</a>
-              </form>
-            </div>
-          </nav>
-        </div>
+        <Navbar />
         <div className='text-center upper'>
-          <button className=' buttonBuy'>Купи сега</button>
+          <a href='/products' className=' button-pink-wh markf'>Купи сега</a>
         </div>
       </div>
     </div>

@@ -16,32 +16,36 @@ const Products = () => {
     return (
         <div>
             <nav className="navbar navbar-dark ">
-                <div className="container-fluid">
-                    <a className="navbar-brand mx-2" href="/">
-                        <img src={macalogo} height='70' />
-                    </a>
-                    <form className="d-flex mx-4 right">
-                        <a className="navbar-brand mx-3 par-font-fam" href="/products">Продукти</a>
-                        <a className="navbar-brand mx-5 par-font-fam" href="/about">За нас</a>
-                    </form>
-                </div>
-            </nav><br/><br/><br/>
+            <div className="container-fluid">
+              <a className="navbar-brand mx-2" href="/">
+                <img src={macalogo} height='70' />
+              </a>
+              <form className="d-flex mx-4 right">
+                <div className='li'><a className="navbar-brand navbar-branda mx-3 markf" href="/products">Продукти</a></div>
+                <div className='li'><a className="navbar-brand navbar-branda mx-3 markf" href="/about">За нас</a></div>
+              </form>
+            </div>
+          </nav>
+            <br/><br/><br/>
             <div class="container text-light my-5 py-5">
                 <div class="row p-3">
                     <div class="col text-center">
                     <img src={box} height='450vh' />
                     </div>
                     <div class="col">
-                        <h2 className='markf'>Maca Cards</h2>
-                        <p className='par-font-fam'>Et excepteur magna velit non. Quis enim dolor laborum eiusmod est incididunt laborum eu laboris velit ea aute veniam. Velit ad ipsum aliquip excepteur et. Occaecat in occaecat laboris elit magna eu.</p>
-                        <ul className='par-font-fam'>
-                            <li>Aasd</li>
-                            <li>Aasd</li>
-                            <li>Aasd</li>
-                            <li>Aasd</li>
+                        <h2 className='markf '>Maca Cards</h2><hr />
+                        <p className='par-font-fam h5 mb-4 lhgh'>
+                        Manicure Cards Challenge е игра за тези, които никога не знаят какво искат. 
+                        Майсторът подава картите с гръб към клиента, той тегли и бум! Имате си нов маникюр.. почти. По този повод сме измъдрили:
+                        </p>
+                        <ul className='par-font-fam liststyle h5 mb-3'>
+                            <li className='liststyle'>27 ръчно рисувани карти</li>
+                            <li>6 рунда</li>
+                            <li>183721 комбинации</li>
                         </ul>
-                        <p className='par-font-fam'>Sunt incididunt ad veniam enim commodo reprehenderit consequat irure quis esse consequat quis deserunt id.</p>
-                        <button onClick={addToCart} className='btn btn-outline-light outline py-2 px-3'>Добави в количката</button>
+                        <p className='par-font-fam h5'>И даже са изцяло на български!</p>
+                        <hr/>
+                        <button onClick={addToCart} className='button-wh-pink'>Добави в количката</button>
                     </div>
                 </div>
             </div>

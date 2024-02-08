@@ -38,7 +38,7 @@
 }
 
 .button-wh-pink{
-  padding: 8px 35px;
+  padding: 10px 35px;
   border: 1px solid white;
   background-color: transparent;
   color: white;
@@ -47,11 +47,31 @@
   font-size: 19px;
   letter-spacing: 2px;
   font-weight: bold;
+  text-decoration: none;
 }
 .button-wh-pink:hover{
   border: 1px solid #E72F8B;
   background-color: #E72F8B;
 }
+.button-pink-wh{
+  padding: 10px 45px;
+  border: 1px solid #E72F8B;
+  background-color: #E72F8B;
+  color: white;
+  border-radius: 13px;
+  transition: 0.3s;
+  font-size: 19px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.button-pink-wh:hover{
+  border: 5px solid white;
+  transform: scale(1.1);
+}
 .lett{
   letter-spacing: 2px;
+}
+.liststyle{
+  list-style-type: circle;
 }

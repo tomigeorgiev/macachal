@@ -8,6 +8,9 @@
 }
 
 .markf{font-family: 'Marker Felt', sans-serif;}
+.lhgh{
+    line-height: 30px;
+}
 
 .par-font-fam {
     font-family: var(--par-font-family);
@@ -16,6 +19,7 @@
 body {
     overflow-x: hidden;
     background-color: #171717;
+    font-family: var(--par-font-family);
 }
 
 .headerclass {
@@ -119,6 +123,7 @@ body {
 .fm-l{
     font-size: 20px;
 }
+.ltr-space{letter-spacing: 1px;}
 @media only screen and (min-width: 700px) {
     .font-large{font-size: larger;}
     .font-lm{font-size: 21.5px}
@@ -135,3 +140,37 @@ body {
    display: none;
 }
 
+.navbar-branda {
+    display: block;
+    position: relative;
+    padding: 0.2em 0;
+  }
+
+.navbar-branda::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 17%;
+    width: 70%;
+    height: 0.1em;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .navbar-branda:hover::after,
+  .navbar-branda:focus::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2em, 0);
+  }
+
+  .li a::after {
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+  }
+  
+  .li a:hover::after,
+  .li a:focus::after{
+    transform: scale(1);
+  }

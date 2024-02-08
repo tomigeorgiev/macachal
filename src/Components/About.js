@@ -6,16 +6,16 @@ const About = () => {
     return (
         <div>
             <nav className="navbar navbar-dark ">
-                <div className="container-fluid">
-                    <a className="navbar-brand mx-2" href="/">
-                        <img src={macalogo} height='70' />
-                    </a>
-                    <form className="d-flex mx-4 right">
-                        <a className="navbar-brand mx-3 par-font-fam" href="/products">Продукти</a>
-                        <a className="navbar-brand mx-5 par-font-fam" href="/about">За нас</a>
-                    </form>
-                </div>
-            </nav><br /><br /><br /><br />
+            <div className="container-fluid">
+              <a className="navbar-brand mx-2" href="/">
+                <img src={macalogo} height='70' />
+              </a>
+              <form className="d-flex mx-4 right">
+                <div className='li'><a className="navbar-brand navbar-branda mx-3 markf" href="/products">Продукти</a></div>
+                <div className='li'><a className="navbar-brand navbar-branda mx-3 markf" href="/about">За нас</a></div>
+              </form>
+            </div>
+          </nav><br /><br /><br /><br />
             <div className='container text-light text-center px-5'>
                 <h2>Manicure Cards Challenge</h2>
                 <hr/>
