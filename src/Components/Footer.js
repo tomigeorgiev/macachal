@@ -6,11 +6,11 @@ const Footer = () => {
     return (
         <div className="container">
             <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-3 py-5 border-top d-flex">
-                <div className="col mb-3 mr-5 toright">
+                <div className="col mb-3 mr-5 ">
                     <img src={logo} height={200} />
                 </div>
 
-                <div className="col mb-3 ml-5 par-font-fam widthsm  font-large">
+                <div className="col mb-3 par-font-fam widthsm  font-large">
                     <div>
                     <h4>Полезно</h4>
                     <ul className="nav flex-column ">
@@ -23,7 +23,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="col mb-5 pdr font-large">
+                <div className="col mb-5 font-large">
                     <h4 className='par-font-fam'>Намерете ни</h4><br/>
                     <ul className="nav flex-column ">
                         <li className="nav-item mb-2 d-flex">
@@ -39,7 +39,7 @@ const Footer = () => {
                     </ul>
                 </div>
             </footer><hr className='m-0' />
-            <div className='text-center text-secondary p-4'>
+            <div className='text-center text-secondary treb p-4'>
                 Manicure Cards Challenge 2024 | &copy; All Rights Reserved
             </div>
 

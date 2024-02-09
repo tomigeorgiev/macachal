@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Carousel from './carousel'
 import Header from './header'
 import Footer from './Footer'
+import CartComponent from './CartComponent'
+
 import './style.css'
 import './cust.css'
 import './animations.css'
@@ -11,31 +13,62 @@ import './addscript'
 
 const Index = () => {
 
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const texts = [
+        <div>Покажеш на тия хора как са пра'и <i className='text-secondary'>#OurNextChallenge</i></div>,
+        <div>Гепнеш някоя далаверка... <i className='text-secondary'>евентуално</i></div>,
+        <div>Го имаме <i class="fa-regular fa-face-smile-beam"></i></div>,
+        "Циментираш тоз' камък",
+        "Преливаш без да се оливаш",
+        "Го усмихнеш тоя френски",
+        "Изправиш кривите си линии",
+        "Тръкнеш на баба ти перлата",
+        "Скиваш новостите първа"
+    ];
+
+    useEffect(() => {
+        const changeText = () => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        };
+
+        const interval = setInterval(changeText, 3000);
+
+        return () => clearInterval(interval);
+    }, [texts.length]);
+
+    useEffect(() => {
+        const emailTag = document.getElementById('emailtag');
+        emailTag.classList.remove('slide-in-text'); 
+        void emailTag.offsetWidth; 
+        emailTag.classList.add('slide-in-text'); 
+    }, [currentIndex]);
+
     return (
         <div>
             <header className='headerclass'>
                 <Header />
-                <Carousel />
             </header>
-            <br /><br /><br /><br /><br /><br /><br />
+
             <div className='my-5 p-5 mx-5 text-center text-white'>
                 <div className='mx-5 px-5'>
-                <h1 className='markf'><b>Решения за нерешителните</b> </h1>
-                <hr /><br/>
-                <p className='px-5 h4 lett mx-5 mb-5 '>
-                Всички знаем, че жените никога не знаят какво искат. МАСА картите ще бъдат твоята нова кристална топка, която магически отгатва желанията на клиентите ти. С тях изборът е по-лек и от пигмент - едно теглене и цялата магия се разкрива. Времето е скъпоценно, а МАСА картите са негов пазител!     
-                </p>
-                <a href='/products' className='button-wh-pink' >Поръчай</a>
+                    <h1 className='markf'><b>Решения за нерешителните</b> </h1>
+                    <hr /><br />
+                    <p className='px-5 h4 lett mx-5 mb-5 '>
+                        Всички знаем, че жените никога не знаят какво искат. МАСА картите ще бъдат твоята нова кристална топка, която магически отгатва желанията на клиентите ти. С тях изборът е по-лек и от пигмент - едно теглене и цялата магия се разкрива. Времето е скъпоценно, а МАСА картите са негов пазител!
+                    </p>
+                    <a href='/products' className='button-wh-pink' >Поръчай</a>
                 </div>
             </div>
-            
-            <div className='opt-in-bal markf' >
-                <h3>Дай си имейлчето, за да</h3>
-                <h3 id='emailtag'></h3>
 
+            <Carousel /><br /><br />
+
+            <div className='opt-in-bal markf'>
+                <h4 className='mb-2'>Дай си имейлчето, за да</h4>
+                <h3 id='emailtag'>{texts[currentIndex]}</h3>
+                <br/>
                 <div className='d-flex text-center'>
-                <input type="email" class="form-control mb-2" id="email" placeholder="Имейл" />
-                <button type="submit" class="btn btn-secondary mb-2 mx-2">Добави</button>
+                    <input type="email" className="form-control mb-2" id="email" placeholder="Имейл" />
+                    <button type="submit" className="btn btn-secondary mb-2 mx-2">Добави</button>
                 </div>
                 <h4 className='par-font-fam'> Няма да споделяме скъпоценния ти имейл с никого. Мъжка дума!</h4>
             </div>
@@ -45,7 +78,7 @@ const Index = () => {
                     <div className="row mb-2">
                         <div className="col-md-8 col-xl-6 text-center mx-auto">
                             <h2 className="display-6 text-white fw-bold markf"><span className="underline">FAQ<br /></span></h2><hr className='text-white' />
-                         </div>
+                        </div>
                     </div>
                     <div className="row mb-2 par-font-fam ">
                         <div className="col-md-8 mx-auto">
@@ -80,6 +113,7 @@ const Index = () => {
                 </div>
             </section>
 
+            <CartComponent />
 
             <footer className='bg-light mb-0'>
                 <Footer />

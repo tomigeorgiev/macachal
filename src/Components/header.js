@@ -12,7 +12,7 @@ import stars from './images/stars & puffs.png'
 const header = () => {
   return (
     <div className='mb-5'>
-      <div>
+      <div className=''>
         <div className='cards'>
           <img src={cardsleft} className='cardsleft' />
           <img src={cardsright} className='cardsright' />

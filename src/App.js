@@ -19,11 +19,6 @@ function App() {
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
-      <div className='bot' id='basket'>
-        <a href='/cart'>
-        <i class="fa-solid fa-basket-shopping"></i>
-        </a>
-    </div>
     </>
   );
 }

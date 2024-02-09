@@ -117,7 +117,7 @@ body {
 .opt-in-bal {
     background-image: url("./images/bubbleOpt.png");
     background-size: 100% 100%;
-    width: 100vw;
+    width: 100%;
     padding: 250px 350px;
 }
 .fm-l{
@@ -137,7 +137,7 @@ body {
 }
 
 .accordion-button::after{
-   display: none;
+   background-image: url("./images/maca.new.png");
 }
 
 .navbar-branda {
