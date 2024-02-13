@@ -2,12 +2,12 @@
     0%{
         top: 60%;
         left: -10%;
-        transform: rotate(15deg);
+        transform: rotate(10deg);
     }
     100%{
         top: 30%;
-        left: 16%;
-        transform: rotate(-25deg);
+        left: 13%;
+        transform: rotate(-0deg);
     }
 }
 @keyframes cardsRightAnim {
@@ -18,8 +18,8 @@
     }
     100%{
         top: 30%;
-        right:14%;
-        transform: rotate(25deg);
+        right: 15%;
+        transform: rotate(15deg);
     }
 }
 @keyframes cardsBox {

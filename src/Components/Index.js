@@ -15,15 +15,16 @@ const Index = () => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const texts = [
-        <div>Покажеш на тия хора как са пра'и <i className='text-secondary'>#OurNextChallenge</i></div>,
-        <div>Гепнеш някоя далаверка... <i className='text-secondary'>евентуално</i></div>,
-        <div>Го имаме <i class="fa-regular fa-face-smile-beam"></i></div>,
-        "Циментираш тоз' камък",
-        "Преливаш без да се оливаш",
-        "Го усмихнеш тоя френски",
-        "Изправиш кривите си линии",
-        "Тръкнеш на баба ти перлата",
-        "Скиваш новостите първа"
+        <div>покажеш на тия хора как са пра'и <i className='pink mini'>#OurNextChallenge</i>.</div>,
+        <div>гепнеш някоя далаверка... <i className='pink'>евентуално</i>.</div>,
+        <div>го имаме. <i class="fa-regular fa-face-smile-beam"></i></div>,
+        <div>циментираш тоз' камък. <i class="fa-solid fa-gem"></i></div>,
+        "преливаш без да се оливаш.",
+        <div>го усмихнеш тоя френски. <i class="fa-regular fa-face-laugh-squint"></i> </div>,
+        "изправиш кривите си линии.",
+        "тръкнеш на баба ти перлата.",
+        <div>скиваш новостите първа. <i class="fa-solid fa-ranking-star"></i></div>
+        
     ];
 
     useEffect(() => {
@@ -38,9 +39,9 @@ const Index = () => {
 
     useEffect(() => {
         const emailTag = document.getElementById('emailtag');
-        emailTag.classList.remove('slide-in-text'); 
-        void emailTag.offsetWidth; 
-        emailTag.classList.add('slide-in-text'); 
+        emailTag.classList.remove('slide-in-text');
+        void emailTag.offsetWidth;
+        emailTag.classList.add('slide-in-text');
     }, [currentIndex]);
 
     return (
@@ -49,32 +50,34 @@ const Index = () => {
                 <Header />
             </header>
 
-            <div className='my-5 p-5 mx-5 text-center text-white'>
-                <div className='mx-5 px-5'>
+            <div className='my-5 py-5 text-center text-white'>
+                <div className='mx-5'>
                     <h1 className='markf'><b>Решения за нерешителните</b> </h1>
                     <hr /><br />
-                    <p className='px-5 h4 lett mx-5 mb-5 '>
-                        Всички знаем, че жените никога не знаят какво искат. МАСА картите ще бъдат твоята нова кристална топка, която магически отгатва желанията на клиентите ти. С тях изборът е по-лек и от пигмент - едно теглене и цялата магия се разкрива. Времето е скъпоценно, а МАСА картите са негов пазител!
+                    <p className='px-1 h5  lightt mb-5 '>
+                        Всички знаем, че жените никога не знаят какво искат. <b className='markf fw-bold pink'>MACA</b> картите ще бъдат
+                        твоята нова кристална топка, която магически отгатва желанията на клиентите ти.
+                        С тях изборът е по-лек и от пигмент - едно теглене и цялата магия се разкрива. Времето е скъпоценно,
+                        а <b className='markf fw-bold pink'>MACA</b> картите са негов пазител!
                     </p>
-                    <a href='/products' className='button-wh-pink' >Поръчай</a>
+                    <a href='/products' className='button-wh-pink markf' >Поръчай</a>
                 </div>
             </div>
 
             <Carousel /><br /><br />
 
             <div className='opt-in-bal markf'>
-                <h4 className='mb-2'>Дай си имейлчето, за да</h4>
+                <h3 className='mb-1'>Дай си имейлчето, за да</h3>
                 <h3 id='emailtag'>{texts[currentIndex]}</h3>
-                <br/>
                 <div className='d-flex text-center'>
-                    <input type="email" className="form-control mb-2" id="email" placeholder="Имейл" />
-                    <button type="submit" className="btn btn-secondary mb-2 mx-2">Добави</button>
+                    <input type="email" className="form-control mb-2 leftin" id="email" placeholder="Имейл" />
+                    <button type="submit" className="btn btn-secondary-outline rightbtn pink  mb-2"><i class="fa-solid fa-circle-arrow-right"></i></button>
                 </div>
-                <h4 className='par-font-fam'> Няма да споделяме скъпоценния ти имейл с никого. Мъжка дума!</h4>
+                <h6 className='par-font-fam'> Няма да споделяме скъпоценния ти имейл с никого. Мъжка дума!</h6>
             </div>
 
-            <section className="py-5 my-5">
-                <div className="container py-5">
+            <section className="pb-5">
+                <div className="container pb-5 mb-5">
                     <div className="row mb-2">
                         <div className="col-md-8 col-xl-6 text-center mx-auto">
                             <h2 className="display-6 text-white fw-bold markf"><span className="underline">FAQ<br /></span></h2><hr className='text-white' />

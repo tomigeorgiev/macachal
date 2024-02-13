@@ -1,0 +1,274 @@
+@media (max-width: 2000px) {
+    .cardsbox {
+        position: absolute;
+        height: 450px;
+        z-index: 3;
+        top: 22%;
+        left: 40vw;
+        animation: cardsBox 1.3s ease-in-out forwards;
+    }
+    .starss {
+        position: absolute;
+        height: 700px;
+        z-index: 3;
+        top: 2%;
+        left: 7.5vw;
+        animation: puffs 0.7s ease-in-out forwards;
+    }
+
+    .cardsleft {
+        position: absolute;
+        height: 350px;
+        z-index: 0;
+        animation: cardsLeftAnim 1.3s ease-in-out forwards;
+    }
+
+    .cardsright {
+        position: absolute;
+        height: 350px;
+        z-index: 0;
+        animation: cardsRightAnim 1.3s ease-in-out forwards;
+    }
+
+    .upper {
+        position: relative;
+        margin-top: -5em;
+        z-index: 3;
+    }
+
+    .headerclass {
+        background-color: #000000;
+        height: 100vh;
+    }
+
+    .headerback {
+        position: relative;
+        background-image: url("./images/bubble.v03.png");
+        background-size: 100% 100%;
+        font-family: var(--mark-font-family);
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .headBubble {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 5;
+        transition: 0.2s;
+    }
+    .scrolled {
+        background-color: #171717;
+        border-bottom: 1px solid rgb(155, 155, 155);
+    }
+
+    .carimg {
+        height: 75vh;
+        width: 90vw;
+        text-align: center;
+        border-radius: 30px;
+    }
+
+    .opt-in-bal {
+        background-image: url("./images/cloud.png");
+        background-size: 100% 100%;
+        text-align: center;
+        justify-content: center;
+        width: 100vw;
+        height: 60vw;
+        padding: 250px;
+    }
+    .bot {
+        position: fixed;
+        bottom: 30px;
+        right: 60px;
+        z-index: 5;
+    }
+
+    .bot a {
+        border: none;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        font-size: 35px;
+        padding: 10px 13px;
+        box-shadow: 0px 0px 20px 1px rgb(92, 92, 92);
+    }
+    
+}
+
+@media screen and (max-width: 1150px) {
+    .cardsbox {
+        position: absolute;
+        height: 500px;
+        z-index: 3;
+        top: 32%;
+        left: 34vw;
+        animation: cardsBox 1.3s ease-in-out forwards;
+    }
+    .headerclass {
+        background-color: #171717;
+        height: 100vh;
+    }
+    .starss {
+        display: none;
+    }
+
+    .cardsleft {
+        display: none;
+    }
+
+    .cardsright {
+        display: none;
+    }
+
+    .upper {
+        position: none;
+        margin-top: 0em;
+        z-index: 3;
+    }
+
+    .headerback {
+        position: relative;
+        background-image: url("./images/mobile.png");
+        background-size: 100% 90%;
+        font-family: var(--mark-font-family);
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 5;
+        transition: 0.2s;
+    }
+    .scrolled {
+        background-color: #171717;
+        border-bottom: 1px solid rgb(155, 155, 155);
+    }
+
+    .carimg {
+        height: 400px;
+        width: 85vw;
+        text-align: center;
+        border-radius: 30px;
+    }
+    .opt-in-bal {
+        background-image: url("./images/cloud.png");
+        background-size: 100% 100%;
+        text-align: left;
+        width: 100vw;
+        height: 50vh;
+        padding: 250px 150px;
+    }
+    .widthsm{width: 250px; margin-left: 3em}
+}
+
+@media screen and (max-width: 600px) {
+    .cardsbox {
+        position: absolute;
+        height: 300px;
+        z-index: 3;
+        top: 32%;
+        left: 23vw;
+        animation: cardsBox 1.3s ease-in-out forwards;
+    }
+
+    .starss {
+        display: none;
+    }
+
+    .cardsleft {
+        display: none;
+    }
+
+    .cardsright {
+        display: none;
+    }
+
+    .upper {
+        position: none;
+        margin-top: -4em;
+        z-index: 3;
+    }
+
+    .headerback {
+        background-image: url("./images/mobile.png");
+        background-size: 100% 90%;
+        font-family: var(--mark-font-family);
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 5;
+        transition: 0.2s;
+    }
+    .scrolled {
+        background-color: #171717;
+        border-bottom: 1px solid rgb(155, 155, 155);
+    }
+
+    .carimg {
+        height: 350px;
+        width: 85vw;
+        text-align: center;
+        border-radius: 30px;
+    }
+    .carimg {
+        height: 170px;
+        width: 70vw;
+        text-align: center;
+        border-radius: 20px;
+    }
+    .opt-in-bal {
+        background-image: url("./images/cloud.png");
+        background-size: 250% 110%;
+        text-align: left;
+        width: 100vw;
+        height: 90vh;
+        padding: 230px 20px;
+    }
+    .bot {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 5;
+        opacity: 0;
+        animation: botAppear 1s ease 1s forwards;
+    }
+
+    .bot a {
+        border: none;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        font-size: 30px;
+        padding: 9px 12px;
+        box-shadow: 0px 0px 20px 1px rgb(92, 92, 92);
+    }
+    .button-pink-wh{
+        opacity: 0;
+        animation: botAppear 1s ease 1.5s forwards;
+    }
+    .widthsm{margin-left: 0em}
+}
+
+@keyframes botAppear {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

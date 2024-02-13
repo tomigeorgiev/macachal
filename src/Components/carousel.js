@@ -19,11 +19,10 @@ const Carousel = () => {
   var settings = {
     className: "center",
     centerMode: true,
-    centerPadding: "60px",
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     easing: 'ease-in-out',

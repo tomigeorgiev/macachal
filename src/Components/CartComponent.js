@@ -8,9 +8,8 @@ const CartComponent = () => {
             <div className={`bot ${isScaled ? 'scaled' : ''}`} id='basket'>
                 <a href='/cart'>
                     <i className="fa-solid fa-basket-shopping"></i>
+                    {localStorage.getItem('addedToCart') === "added" && <p className='num'></p>}
                 </a>
-                {/* Display the number of items in the cart */}
-                {localStorage.getItem('addedToCart') === "added" && <p className='num'></p>}
             </div>
         </div>
     );
