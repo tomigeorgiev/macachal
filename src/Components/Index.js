@@ -55,10 +55,10 @@ const Index = () => {
                     <h1 className='markf'><b>Решения за нерешителните</b> </h1>
                     <hr /><br />
                     <p className='px-1 h5  lightt mb-5 '>
-                        Всички знаем, че жените никога не знаят какво искат. <b className='markf fw-bold pink'>MACA</b> картите ще бъдат
+                        Всички знаем, че жените никога не знаят какво искат. <b className='markf fw-bold pink'>MaCa</b> картите ще бъдат
                         твоята нова кристална топка, която магически отгатва желанията на клиентите ти.
                         С тях изборът е по-лек и от пигмент - едно теглене и цялата магия се разкрива. Времето е скъпоценно,
-                        а <b className='markf fw-bold pink'>MACA</b> картите са негов пазител!
+                        а <b className='markf fw-bold pink'>MaCa</b> картите са негов пазител!
                     </p>
                     <a href='/products' className='button-wh-pink markf' >Поръчай</a>
                 </div>

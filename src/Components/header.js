@@ -3,11 +3,13 @@ import React from 'react'
 import Navbar from './Navbar'
 import macalogo from './images/maca.new.png'
 
-import bubble from './images/bubble.png'
+import bubble from './images/bubble.v03.png'
 import cardsleft from './images/cards.new2.png'
 import cardsright from './images/cards.new.png'
 import cardsbox from './images/box2.png'
-import stars from './images/stars & puffs.png'
+
+import puffs from './images/puffs.png'
+import stars from './images/stars2.6.png'
 
 import './header.css'
 
@@ -20,6 +22,7 @@ const header = () => {
           <img src={cardsright} className='cardsright' />
           <img src={cardsbox} className='cardsbox' />
           <img src={stars} className='starss' />
+          {/* <img src={puffs} className='puffs' /> */}
         </div>
         <div className='headerback'>
           <nav className="navbar navbar-dark ">

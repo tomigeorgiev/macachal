@@ -2,24 +2,24 @@
     0%{
         top: 60%;
         left: -10%;
-        transform: rotate(10deg);
+        transform: rotate(30deg);
     }
     100%{
-        top: 30%;
-        left: 13%;
-        transform: rotate(-0deg);
+        top: 23%;
+        left: 15%;
+        transform: rotate(0deg);
     }
 }
 @keyframes cardsRightAnim {
     0%{
         top: 60%;
         right: -10%;
-        transform: rotate(-15deg);
+        transform: rotate(-20deg);
     }
     100%{
-        top: 30%;
-        right: 15%;
-        transform: rotate(15deg);
+        top: 23%;
+        right: 13%;
+        transform: rotate(-7deg);
     }
 }
 @keyframes cardsBox {
@@ -30,6 +30,12 @@
 @keyframes puffs {
     0%{transform: scale(0.8)}
     100%{transform: scale(1)}
+}
+
+@keyframes stars {
+    0%{opacity: 1;}
+    50%{opacity: 0;}
+    100%{opacity: 1;}
 }
 
 .treb{font-family: 'helvetica', sans-serif;}
