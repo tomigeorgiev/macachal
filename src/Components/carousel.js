@@ -19,15 +19,48 @@ const Carousel = () => {
   var settings = {
     className: "center",
     centerMode: true,
+    centerPadding: "280px",
+    pauseOnHover: false,
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
     easing: 'ease-in-out',
-    lazyLoad: true,
-    arrows: false
+    autoplay: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          centerPadding: "250px",
+        }
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          centerPadding: "150px",
+        }
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          centerPadding: "50px",
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          centerPadding: "20px",
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          centerPadding: "40px",
+        }
+      }
+    ],
   };
   return (
     <div className='slider-container'>
