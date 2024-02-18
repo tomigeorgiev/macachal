@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+@font-face {
+  font-family: 'Marker Felt';
+  src: url('./fonts/MarkerFelt-Thin.eot');
+  src: local('Marker Felt Wide'), local('MarkerFelt-Wide'),
+      url('./fonts/MarkerFelt-Wide.eot?#iefix') format('embedded-opentype'),
+      url('./fonts/MarkerFelt-Wide.woff2') format('woff2'),
+      url('./fonts/MarkerFelt-Wide.woff') format('woff'),
+      url('./fonts/MarkerFelt-Wide.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Marker Felt';
+  src: url('./fonts/MarkerFelt-Thin.eot');
+  src: local('Marker Felt Thin'), local('MarkerFelt-Thin'),
+      url('./fonts/MarkerFelt-Thin.eot?#iefix') format('embedded-opentype'),
+      url('./fonts/MarkerFelt-Thin.woff2') format('woff2'),
+      url('./fonts/MarkerFelt-Thin.woff') format('woff'),
+      url('./fonts/MarkerFelt-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto{
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+}
+
+.button-wh-pink{
+  padding: 10px 35px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-size: 19px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.button-wh-pink:hover{
+  border: 1px solid #E72F8B;
+  background-color: #E72F8B;
+}
+.button-pink-wh{
+  padding: 10px 45px;
+  border: 1px solid #ffffff;
+  background-color: #E72F8B;
+  color: white;
+  border-radius: 13px;
+  transition: 0.3s;
+  /* font-size: 19px; */
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.button-pink-wh:hover{
+  border: 5px solid white;
+  transform: scale(1.1);
+}
+
+.activated{
+  background-color: #E72F8B;
+  border: none;
+}
+.activated:hover{
+  border: none;
+  transform: scale(1);
+}
+.lett{
+  letter-spacing: 2px;
+}
+.letr{
+  letter-spacing: 1px;
+}
+.liststyle{
+  list-style-type: circle;
+}
+.num{
+  position: absolute;
+  font-size: 14px;
+  top: -5px;
+  left: 0;
+  background-color: #E72F8B;
+  padding: 0px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+}
+
+.pink{color: #E72F8B;}
+
+.leftin{
+  border-right: 0;
+  border-radius: 5px 0 0 5px;
+}
+.rightbtn{
+  border-right: 1px solid rgb(220, 220, 220);
+  border-top: 1px solid rgb(220, 220, 220);
+  border-bottom: 1px solid rgb(220, 220, 220);
+  border-radius: 0 5px 5px 0;
+
+}
+
+.rightbtn:hover{
+  border-right: 1px solid rgb(220, 220, 220);
+  border-top: 1px solid rgb(220, 220, 220);
+  border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+.rl{border-radius: 5px 0 0 5px;}
+.rr{border-radius: 0 5px 5px 0;}
+.inpplc{width: 10%;text-align: center;}
+.inpplc::placeholder{color: white}
+
+.marmin{margin-top: -15px}
+
+.slide-in-text {
+  animation: slideInText 1.5s ease-in-out forwards;
+}
+
+@keyframes slideInText {
+  0% {
+    transform: translateY(-0.3em);
+    opacity: 0.2;
+  }
+  
+  40% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.cartItem{
+  animation: slideInText 0.5s ease-in-out forwards;
+}
+@keyframes cartItemAnim {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.mini{margin-right: 5px;}
+.stroke{
+  /* -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: black; */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.bot {
+  transition: transform 0.3s ease-in-out;
+}
+
+.bot.scaled {
+  transform: scale(1.2);
+}
+
+.posbtn{
+  position: absolute;
+  font-size: large;
+  padding: 6px 12px 3px 11px;
+  top: 10px;
+  right: 10px;
+}
+
+.video{
+  width: 100vw;
+  height: 100vh;
+}
+
+.br{
+  border-right: 1px solid rgb(93, 93, 93);
+}
+
+.dms{
+  border: 2px solid #E72F8B;
+  background-color: #E72F8B;
+  color: white;
+  margin: 10px 0 20px 0;
+  padding: 10px 20px;
+}
+
+.dms:hover{
+  border: 2px solid white;
+  background-color: #E72F8B;
+
+}

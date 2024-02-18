@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Neucha&family=Sofia+Sans+Condensed:ital@0;1&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300;400;700&display=swap');
+
+
+:root {
+    --par-font-family: "Neucha", cursive;
+    --shan-font-family: 'Shantell Sans', cursive;                                
+}
+
+.markf{font-family: 'Marker Felt', sans-serif;}
+.lhgh{
+    line-height: 30px;
+}
+.lightt{
+    font-weight: 300;
+}
+
+.par-font-fam {
+    font-family: var(--par-font-family);
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #171717;
+    font-family: var(--shan-font-family);
+}
+
+.buttonBuy {
+    background-image: url("./images/button.v02.png");
+    /* background-color: rgb(204, 54, 79); */
+    background-size: 100% 100%;
+    color: white;
+    width: 150px;
+    font-size: 20px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(27, 27, 27);
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid rgb(108, 17, 32);
+    border-radius: 10px;
+}
+
+
+.pickbtn {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    padding: 6px;
+    margin: 0 5px;
+}
+
+.fm-l{
+    font-size: 20px;
+}
+.ltr-space{letter-spacing: 1px;}
+@media only screen and (min-width: 700px) {
+    .font-large{font-size: larger;}
+    .font-sm{font-size: 12px}
+    .pdr{padding-left: 6em;}
+    .toright{
+        margin-right: 5em;
+        padding-right: 5em;
+    }
+}
+.font-lm{font-size: 21.5px}
+.accordion-button::after{
+   background-image: url("./images/arrow.png");
+}
+.accordion-button:not(.collapsed)::after{
+    background-image: var("./images/arrow.png");
+}
+
+.navbar-branda {
+    display: block;
+    position: relative;
+    padding: 0.2em 0;
+  }
+
+.navbar-branda::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 17%;
+    width: 70%;
+    height: 0.1em;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .navbar-branda:hover::after,
+  .navbar-branda:focus::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2em, 0);
+  }
+
+  .li a::after {
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+  }
+  
+  .li a:hover::after,
+  .li a:focus::after{
+    transform: scale(1);
+  }

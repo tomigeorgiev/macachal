@@ -1,0 +1,42 @@
+@keyframes cardsLeftAnim {
+    0%{
+        top: 60%;
+        left: -10%;
+        transform: rotate(30deg);
+    }
+    100%{
+        top: 23%;
+        left: 15%;
+        transform: rotate(0deg);
+    }
+}
+@keyframes cardsRightAnim {
+    0%{
+        top: 60%;
+        right: -10%;
+        transform: rotate(-20deg);
+    }
+    100%{
+        top: 23%;
+        right: 13%;
+        transform: rotate(-7deg);
+    }
+}
+@keyframes cardsBox {
+    0%{transform: scale(0) }
+    80%{transform: scale(1.1)}
+    100%{transform: scale(1)}
+}
+@keyframes puffs {
+    0%{transform: scale(0.8)}
+    100%{transform: scale(1)}
+}
+
+@keyframes stars {
+    0%{opacity: 1;}
+    50%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+.treb{font-family: 'helvetica', sans-serif;}
+.darks{color: rgb(107, 107, 107);}
