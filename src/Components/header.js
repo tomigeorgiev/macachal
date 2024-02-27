@@ -12,7 +12,7 @@ import cardsbox from './images/box2.png'
 import puffs from './images/puffs.png'
 import stars from './images/stars2.6.png'
 
-import video from './images/animation.mp4'
+import video from './images/anim.mp4'
 
 import './header.css'
 
@@ -24,7 +24,7 @@ const Header = () => {
 
         const handleVideoEnd = () => {
             video.pause();
-            video.currentTime = video.duration - 1; // Замразяване на последния кадър
+            video.currentTime = video.duration - 0.01; // Замразяване на последния кадър
             captureLastFrame();
         };
 

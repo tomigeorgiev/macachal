@@ -51,8 +51,7 @@
 
     .headerback {
         position: relative;
-        background-image: url("./images/bubble6.png");
-        background-size: 100% 100%;
+        background-color: #191919;
         font-family: var(--mark-font-family);
         height: 100vh;
         width: 100vw;
@@ -83,13 +82,13 @@
     }
 
     .opt-in-bal {
-        background-image: url("./images/cloud.png");
+        background-image: url("./images/email bubble2.png");
         background-size: 100% 100%;
         text-align: center;
         justify-content: center;
         width: 100vw;
         height: 60vw;
-        padding: 250px;
+        padding: 330px;
     }
     .bot {
         position: fixed;
@@ -105,25 +104,30 @@
         border-radius: 50%;
         font-size: 35px;
         padding: 10px 13px;
-        box-shadow: 0px 0px 20px 1px rgb(92, 92, 92);
+        box-shadow: 0px 0px 13px 0.5px rgb(92, 92, 92);
     }
     .orderForm {
         display: none;
         position: fixed;
         background-color: #1a1a1a;
         background-image: url('images/stars2.6.png');
-        background-size: 100% 120%;
+        background-size: 105% 115%;
         border: 1px solid white;
         border-radius: 20px;
-        top: 0%;
+        top: -6%;
         left: 7vw;
         z-index: 7;
+        transform: scale(0.9);
+
     }
     .display{
         display: none;
     }
     #videoback{
         display: block;
+    }
+    .textresp{
+        margin: auto 120px;
     }
 }
 
@@ -180,8 +184,7 @@
 
     .headerback {
         position: relative;
-        background-image: url("./images/bubble6.png");
-        background-size: 100% 105%;
+        background-color: #191919;
         font-family: var(--mark-font-family);
         height: 100vh;
         width: 100vw;
@@ -215,13 +218,13 @@
     }
 
     .opt-in-bal {
-        background-image: url("./images/cloud.png");
+        background-image: url("./images/email bubble2.png");
         background-size: 100% 100%;
         text-align: center;
         justify-content: center;
-        width: 100vw;
-        height: 60vw;
-        padding: 250px;
+        width: 100%;
+        height: 67vw;
+        padding: 270px;
     }
     .bot {
         position: fixed;
@@ -237,7 +240,10 @@
         border-radius: 50%;
         font-size: 35px;
         padding: 10px 13px;
-        box-shadow: 0px 0px 20px 1px rgb(92, 92, 92);
+        box-shadow: 0px 0px 13px 0.5px rgb(92, 92, 92);
+    }
+    .textresp{
+        margin: auto 110px;
     }
 }
 
@@ -274,7 +280,7 @@
 
     .headerback {
         position: relative;
-        background-image: url("./images/mobile.png");
+        background-image: url("./images/bubble_mobile2.png");
         background-size: 100% 90%;
         font-family: var(--mark-font-family);
         height: 100vh;
@@ -302,10 +308,10 @@
     .opt-in-bal {
         background-image: url("./images/cloud.png");
         background-size: 100% 100%;
-        text-align: left;
+        text-align: right;
         width: 100vw;
-        height: 50vh;
-        padding: 250px 150px;
+        height: 62vh;
+        padding: 150px 100px;
     }
     .widthsm {
         width: 250px;
@@ -317,12 +323,15 @@
     #videoback{
         display: none;
     }
+    .textresp{
+        margin: auto 50px;
+    }
 }
 
 @media screen and (max-width: 600px) {
     .cardsbox {
         position: absolute;
-        height: 300px;
+        height: 320px;
         z-index: 3;
         top: 32%;
         left: 23vw;
@@ -348,7 +357,7 @@
     }
 
     .headerback {
-        background-image: url("./images/mobile.png");
+        background-image: url("./images/bubble_mobile2.png");
         background-size: 100% 90%;
         font-family: var(--mark-font-family);
         height: 100vh;
@@ -382,7 +391,7 @@
     .opt-in-bal {
         background-image: url("./images/cloud.png");
         background-size: 250% 110%;
-        text-align: left;
+        text-align: right;
         width: 100vw;
         height: 90vh;
         padding: 230px 20px;
@@ -403,7 +412,7 @@
         border-radius: 50%;
         font-size: 30px;
         padding: 9px 12px;
-        box-shadow: 0px 0px 20px 1px rgb(92, 92, 92);
+        box-shadow: 0px 0px 13px 0.5px rgb(92, 92, 92);
     }
     .button-pink-wh {
         opacity: 0;
@@ -420,9 +429,12 @@
         background-size: 100%;
         border: 1px solid white;
         border-radius: 20px;
-        top: 5%;
+        top: -6%;
         left: 0;
-        transform: scale(1.1);
+        transform: scale(0.9);
+    }
+    .textresp{
+        margin: auto 0px;
     }
 }
 

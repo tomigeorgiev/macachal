@@ -102,12 +102,12 @@ const Cart = () => {
 
             return (
                 <>
-                    <div className='col-sm-4 marmin'>
+                    <div className='col-sm-3 text-end '>
                         <img src={box} height='300vh' alt="Product" />
                     </div>
                     <div className='col py-3 markf'>
-                        <h1>Manicure Cards Challenge</h1>
-                        <p className='text-secondary'>#MaCaChallenge</p>
+                        <h1>Manicure Cards <br/> Challenge</h1>
+                        <p className='text-secondary'>#MacaChallenge</p>
                         <br />
                         <h3 className='fw-normal'><i>49.90лв / брой</i></h3>
                         <div className='d-flex'>
@@ -155,9 +155,9 @@ const Cart = () => {
     const handleDeliveryOptionChange = (option) => {
         setDeliveryOption(option);
         if (option === 'home') {
-            setAddress('До адрес: ');
+            setAddress('');
         } else if (option === 'office') {
-            setAddress('До офис: ');
+            setAddress('');
         }
     };
 
@@ -195,7 +195,7 @@ const Cart = () => {
                                 <p className='text-secondary font-large markf'>Доставка: </p>
                             </div>
                             <div className='col-7 markf d-flex justify-content-end'>
-                                <p className='text-secondary letr'>{deliveryPrice.toFixed(2)}</p>
+                                <p className='text-secondary d-flex justify-content-end text-end'><i>Доставката се начислява отделно</i></p>
                             </div>
                         </div>
                         <hr />
@@ -205,11 +205,11 @@ const Cart = () => {
                                     <h3><b>Общо:</b></h3>
                                 </div>
                                 <div className='col-5 d-flex justify-content-end markf'>
-                                    <h3>{itemPrice > 0 && totalPriceFormatted || 0}  лв</h3>
+                                    <h3>{ localStorage.getItem('addedToCart') ? intPrice.toFixed(2) : 0}  лв</h3>
                                 </div>
                             </div>
-                            <div className='d-flex justify-content-end '>
-                                <button className='button-wh-pink float-right markf' onClick={toggleOrderFormVisibility}>Поръчай</button>
+                            <div className='d-flex justify-content-end mt-4'>
+                                <button className='button-wh-pink float-right markf w-100' onClick={toggleOrderFormVisibility}>Поръчай</button>
                             </div>
 
                         </div>
@@ -235,11 +235,11 @@ const Cart = () => {
                             <input type='text' className='form-control' placeholder='Имена' value={name} onChange={(e) => setName(e.target.value)} id='name' name='name' />
                         </div>
                         <div className='col'>
-                            <input type='email' placeholder='Имейл' className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} id='email' name='email' />
+                        <input type='tel' placeholder='Телефонен Номер' className='form-control' value={number} onChange={(e) => setNumber(e.target.value)} id='phone' name='phone' />
                         </div>
                     </div>
                     <div className='mb-3'>
-                        <input type='tel' placeholder='Номер' className='form-control' value={number} onChange={(e) => setNumber(e.target.value)} id='phone' name='phone' />
+                    <input type='email' placeholder='Имейл' className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} id='email' name='email' />
                     </div>
                     <div className='mb-3'>
                         <input type='text' placeholder='Град' className='form-control' value={city} onChange={(e) => setCity(e.target.value)} id='address' name='address' />
@@ -270,7 +270,7 @@ const Cart = () => {
                                 onChange={() => handleDeliveryOptionChange('office')}
                             />
                             <label className="form-check-label" htmlFor="officeDelivery">
-                                До офис
+                                До офис на Еконт
                             </label>
                         </div>
                     </div>
@@ -279,10 +279,17 @@ const Cart = () => {
                     </div>
                     <hr />
                     <div className="mb-3">
+                        <h3 className='markf'>Междинна сума: {intPrice.toFixed(2)}лв</h3>
+                    </div>
+                    <div className="mb-3">
+                        <h4 className='markf text-secondary'>Доставка: {deliveryPrice.toFixed(2)}лв</h4>
+                    </div>
+                    <div className="mb-3">
                         <h2 className='markf'>Обща сума: {totalPriceFormatted}лв</h2>
                     </div>
+
                     <hr />
-                    <button className='btn button-wh-pink markf' onClick={Push}>Поръчай</button>
+                    <button className='btn button-order markf' onClick={Push}>Поръчай</button>
                 </form>
             </div>
 

@@ -19,38 +19,81 @@ const Carousel = () => {
   var settings = {
     className: "center",
     centerMode: true,
+    centerPadding: "230px",
+    pauseOnHover: false,
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
     easing: 'ease-in-out',
-    lazyLoad: true,
-    arrows: false
+    autoplay: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          centerMode: true,
+          centerPadding: "200px",
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          centerPadding: "80px",
+        }
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          centerMode: true,
+          centerPadding: "80px",
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          centerPadding: "60px",
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          centerPadding: "50px",
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          centerMode: true,
+          centerPadding: "50px",
+          slidesToShow: 1
+        }
+      }
+    ],
   };
-  const style = {
-    width: '700px',
-  }
   return (
     <div className='slider-container'>
       <Slider  {...settings}>
-        <div className='d-flex justify-content-center' style={style}>
+        <div className='d-flex justify-content-center'>
           <img className='carimg' src={car1} />
         </div>
-        <div className='d-flex justify-content-center' style={style}>
+        <div className='d-flex justify-content-center'>
           <img className='carimg' src={car2} />
         </div>
-        <div className='d-flex justify-content-center' style={style}>
+        <div className='d-flex justify-content-center'>
           <img className='carimg' src={car3} />
         </div>
-        <div className='d-flex justify-content-center' style={style}>
+        <div className='d-flex justify-content-center'>
           <img className='carimg' src={car4} />
         </div>
-        <div className='d-flex justify-content-center' style={style}>
+        <div className='d-flex justify-content-center'>
           <img className='carimg' src={car5} />
         </div>
-        <div className='d-flex justify-content-center' style={style}>
+        <div className='d-flex justify-content-center'>
           <img className='carimg' src={car6} />
         </div>
       </Slider>

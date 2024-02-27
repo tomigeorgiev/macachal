@@ -2,7 +2,7 @@ import React from 'react'
 
 const privacy = () => {
     return (
-        <div className='bg-light px-5 roboto'>
+        <div className='bg-light px-5 treb'>
             <div className='p-5'>
                 <h2 className=''>Политика за поверителност</h2>
                 <br />
