@@ -6,7 +6,7 @@ class EmailSenderRepository {
     }
 
     // Method to send email for a new order
-    async sendEmail(clientName) {
+    async sendEmailForNewOrder(clientName) {
         try {
             return await this.httpClient.post('/email');
         } catch (error) {
