@@ -6,7 +6,7 @@ const token = '13|XzjSXGkN0ySKaCxYpfMQa5IIuh27xWDWEjp9fjdw';
 
 class ShipioRepository {
     constructor() {
-        this.httpClient = new HttpClient('https://fulfillment.shipio.bg/api/', token);
+        this.httpClient = new HttpClient('https://fulfillment.shipio.bg/api/', true, token);
     }
 
     // Method to fetch orders
