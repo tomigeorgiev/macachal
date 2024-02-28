@@ -48,7 +48,9 @@ const Cart = () => {
         products: "macacards:" + count,
       })
       .then(async () => {
-        await emailSenderRepository.sendNewOrderEmail(name);
+        await emailSenderRepository
+          .sendNewOrderEmail(name)
+          .catch((error) => console.log(error));
 
         setOrderPlaced(true);
         setShowOrderForm(false);
