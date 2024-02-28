@@ -47,8 +47,8 @@ const Cart = () => {
         currency: "BGN",
         products: "macacards:" + count,
       })
-      .then(async () => {
-        await emailSenderRepository
+      .then(() => {
+        emailSenderRepository
           .sendNewOrderEmail(name)
           .catch((error) => console.log(error));
 
