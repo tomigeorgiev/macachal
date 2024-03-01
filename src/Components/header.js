@@ -24,7 +24,7 @@ const Header = () => {
 
         const handleVideoEnd = () => {
             video.pause();
-            video.currentTime = video.duration - 0.01; // Замразяване на последния кадър
+            video.currentTime = video.duration - 0.01; 
             captureLastFrame();
         };
 
@@ -45,9 +45,9 @@ const Header = () => {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        const imageUrl = canvas.toDataURL(); // Последният кадър като base64 URL
+        const imageUrl = canvas.toDataURL(); 
 
-        console.log(imageUrl); // Можете да използвате този URL или да го изпратите на сървъра за обработка или да го запазите локално
+        console.log(imageUrl);
     };
 
     return (
