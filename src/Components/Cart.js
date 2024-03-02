@@ -6,10 +6,11 @@ import Footer from "./Footer";
 import box2 from "./images/products image.png";
 import MacachalRepository from "../data/macachal_repository";
 
+const manicureCardsSKU = "MCC1";
+
 const Cart = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [count, setCount] = useState(1);
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -17,7 +18,6 @@ const Cart = () => {
   const [city, setCity] = useState("");
   const [showOrderForm, setShowOrderForm] = useState(false); // Initially false
   const [orderPlaced, setOrderPlaced] = useState(false);
-
   const [deliveryOption, setDeliveryOption] = useState("home");
 
   const macachalRepository = new MacachalRepository();
@@ -41,7 +41,7 @@ const Cart = () => {
         payment_method: "Наложен платеж",
         order_total_amount: totalPriceFormatted,
         currency: "BGN",
-        products: "macacards:" + count,
+        products: manicureCardsSKU + ":" + count,
       })
       .then(() => {
         setOrderPlaced(true);
