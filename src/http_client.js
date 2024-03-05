@@ -4,6 +4,7 @@ class HttpClient {
   constructor(baseURL, needAuthorization, token) {
     const headers = {
       Accept: "application/json",
+      "Content-Type": "application/json",
     };
 
     if (needAuthorization) {
