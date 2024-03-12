@@ -241,7 +241,11 @@ const Cart = () => {
       macachalRepository
         .getEcontOfficesInBulgaria()
         .then((data) => {
-          setEcontOfficesInBulgaria(data.offices.map((office) => office.name));
+          let offices = data.offices.map((office) => ({
+            value: office.name,
+            label: office.name,
+          }));
+          setEcontOfficesInBulgaria(offices);
         })
         .catch((error) => {
           setDeliveryOption("home");
