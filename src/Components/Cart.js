@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Select from "react-select";
 import "./cust.css";
 import macalogo from "./images/maca.new.png";
 import box from "./images/products image2-min.png";
@@ -19,7 +20,7 @@ const Cart = () => {
   const [showOrderForm, setShowOrderForm] = useState(false); // Initially false
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState("home");
-  const [econtBulgarianOffices, setEcontBulgarianOffices] = useState([]);
+  const [econtOfficesInBulgaria, setEcontOfficesInBulgaria] = useState([]);
 
   const macachalRepository = new MacachalRepository();
 
@@ -146,8 +147,9 @@ const Cart = () => {
                 </h5>
               </div>
               <div
-                className={`col-5 font-large ltr-space mb-2 ${isWideScreen ? " d-flex justify-content-end" : ""
-                  } text-right`}
+                className={`col-5 font-large ltr-space mb-2 ${
+                  isWideScreen ? " d-flex justify-content-end" : ""
+                } text-right`}
               >
                 <h4 className="markf">
                   {(localStorage.getItem("addedToCart") === "added" &&
@@ -235,10 +237,12 @@ const Cart = () => {
   const handleDeliveryOptionChange = async (option) => {
     setDeliveryOption(option);
 
-    if (option === "office" && econtBulgarianOffices.length === 0) {
-      macachalRepository.getEcontOfficesInBulgaria().then((offices) => {
-        setEcontBulgarianOffices(offices);
-      })
+    if (option === "office" && econtOfficesInBulgaria.length === 0) {
+      macachalRepository
+        .getEcontOfficesInBulgaria()
+        .then((data) => {
+          setEcontOfficesInBulgaria(data.offices.map((office) => office.name));
+        })
         .catch((error) => {
           setDeliveryOption("home");
           console.log(error);
@@ -288,8 +292,9 @@ const Cart = () => {
 
       <div
         id="orderForm"
-        className={`container orderForm py-5 my-5 ${showOrderForm ? "d-flex justify-content-center" : "d-none"
-          }`}
+        className={`container orderForm py-5 my-5 ${
+          showOrderForm ? "d-flex justify-content-center" : "d-none"
+        }`}
       >
         <button
           className="btn btn-danger posbtn"
@@ -383,17 +388,17 @@ const Cart = () => {
             </div>
           </div>
           {deliveryOption === "office" ? (
-            (econtBulgarianOffices.length === 0) ? (
-              <div class="spinner-border text-light" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            ) : (
-              <select class="selectpicker" data-live-search="true">
-                {econtBulgarianOffices.map((element, index) =>
-                  <option data-tokens="ketchup mustard">{element.name}</option>
-                )}
-              </select>
-            )
+            <div className="mb-3">
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                isLoading={econtOfficesInBulgaria.length === 0}
+                isClearable="true"
+                isSearchable="true"
+                name="econtOfficesInBulgaria"
+                options={econtOfficesInBulgaria}
+              />
+            </div>
           ) : (
             <div className="mb-3">
               <input
