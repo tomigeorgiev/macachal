@@ -19,10 +19,11 @@ const Cart = () => {
   const [showOrderForm, setShowOrderForm] = useState(false); // Initially false
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState("home");
+  const [econtBulgarianOffices, setEcontBulgarianOffices] = useState([]);
 
   const macachalRepository = new MacachalRepository();
 
-  const Push = (event) => {
+  const createOrder = (event) => {
     event.preventDefault();
 
     const min = 100000;
@@ -145,9 +146,8 @@ const Cart = () => {
                 </h5>
               </div>
               <div
-                className={`col-5 font-large ltr-space mb-2 ${
-                  isWideScreen ? " d-flex justify-content-end" : ""
-                } text-right`}
+                className={`col-5 font-large ltr-space mb-2 ${isWideScreen ? " d-flex justify-content-end" : ""
+                  } text-right`}
               >
                 <h4 className="markf">
                   {(localStorage.getItem("addedToCart") === "added" &&
@@ -232,12 +232,17 @@ const Cart = () => {
     }
   }, [orderPlaced]);
 
-  const handleDeliveryOptionChange = (option) => {
+  const handleDeliveryOptionChange = async (option) => {
     setDeliveryOption(option);
-    if (option === "home") {
-      setAddress("");
-    } else if (option === "office") {
-      setAddress("");
+
+    if (option === "office" && econtBulgarianOffices.length === 0) {
+      macachalRepository.getEcontOfficesInBulgaria().then((offices) => {
+        setEcontBulgarianOffices(offices);
+      })
+        .catch((error) => {
+          setDeliveryOption("home");
+          console.log(error);
+        });
     }
   };
 
@@ -283,9 +288,8 @@ const Cart = () => {
 
       <div
         id="orderForm"
-        className={`container orderForm py-5 my-5 ${
-          showOrderForm ? "d-flex justify-content-center" : "d-none"
-        }`}
+        className={`container orderForm py-5 my-5 ${showOrderForm ? "d-flex justify-content-center" : "d-none"
+          }`}
       >
         <button
           className="btn btn-danger posbtn"
@@ -378,17 +382,31 @@ const Cart = () => {
               </label>
             </div>
           </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              placeholder="Адрес"
-              className="form-control"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              id="address"
-              name="address"
-            />
-          </div>
+          {deliveryOption === "office" ? (
+            (econtBulgarianOffices.length === 0) ? (
+              <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            ) : (
+              <select class="selectpicker" data-live-search="true">
+                {econtBulgarianOffices.map((element, index) =>
+                  <option data-tokens="ketchup mustard">{element.name}</option>
+                )}
+              </select>
+            )
+          ) : (
+            <div className="mb-3">
+              <input
+                type="text"
+                placeholder="Адрес"
+                className="form-control"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                id="address"
+                name="address"
+              />
+            </div>
+          )}
           <hr />
           <div className="mb-3">
             <h3 className="markf">Междинна сума: {intPrice.toFixed(2)}лв</h3>
@@ -401,9 +419,8 @@ const Cart = () => {
           <div className="mb-3">
             <h2 className="markf">Обща сума: {totalPriceFormatted}лв</h2>
           </div>
-
           <hr />
-          <button className="btn button-order markf" onClick={Push}>
+          <button className="btn button-order markf" onClick={createOrder}>
             Поръчай
           </button>
         </form>
