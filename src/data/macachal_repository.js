@@ -15,6 +15,15 @@ class MacachalRepository {
       throw error;
     }
   }
+
+  // Method to get all econt offices in Bulgaria
+  async getEcontOfficesInBulgaria() {
+    try {
+      return await this.httpClient.get("/econt/offices?countryCode=BGR");
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default MacachalRepository;
