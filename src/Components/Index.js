@@ -16,8 +16,6 @@ import './animations.css'
 import './startup-modern'
 import './addscript'
 
-import EmailSenderRepository from '../data/email_sender_repository'
-
 const firebaseConfig = {
     apiKey: "AIzaSyBQNjTNQg1uir5ZPE_zMq7NWsKs5Mfnk-I",
     authDomain: "maca-new.firebaseapp.com",
