@@ -8,6 +8,7 @@ import box2 from "./images/products image.png";
 import MacachalRepository from "../data/macachal_repository";
 
 import OrderDone from "./OrderDone";
+import { useNavigate } from 'react-router-dom';
 
 const manicureCardsSKU = "MCC1";
 const deliveryOptionType = {
@@ -28,44 +29,48 @@ const Cart = () => {
     const [deliveryOption, setDeliveryOption] = useState(deliveryOptionType.home);
     const [econtOfficesInBulgaria, setEcontOfficesInBulgaria] = useState([]);
     const [formErrors, setFormErrors] = useState({});
+    const [isOrdering, setIsOrdering] = useState(false);
 
     const macachalRepository = new MacachalRepository();
+    const navigate = useNavigate();
 
     const createOrder = (event) => {
         event.preventDefault();
         if (!validateForm()) return;
+        setIsOrdering(true);
 
         const min = 100000;
         const max = 999999;
         const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
         let addressBasedOnSelectedDeliveryOptionType = getAddressBasedOnSelectedDeliveryOptionType();
+        macachalRepository.createOrder({
+            id: randomNumber,
+            customer_name: name,
+            customer_phone: number,
+            customer_email: email,
+            country: "Bulgaria",
+            city: city,
+            address: addressBasedOnSelectedDeliveryOptionType,
+            payment_method: "Наложен платеж",
+            order_total_amount: totalPriceFormatted,
+            currency: "BGN",
+            products: manicureCardsSKU + ":" + count,
+        }).then(() => {
+            setOrderPlaced(true);
+            setShowOrderForm(false);
+            setName("");
+            setEmail("");
+            setAddress("");
+            setNumber("");
+            setCity("");
+            navigate('/orderPlaced');
+        }).catch((error) => {
+            console.log(error)
+        }).finally(() => {
+            setIsOrdering(false);
+        });
 
-        macachalRepository
-            .createOrder({
-                id: randomNumber,
-                customer_name: name,
-                customer_phone: number,
-                customer_email: email,
-                country: "Bulgaria",
-                city: city,
-                address: addressBasedOnSelectedDeliveryOptionType,
-                payment_method: "Наложен платеж",
-                order_total_amount: totalPriceFormatted,
-                currency: "BGN",
-                products: manicureCardsSKU + ":" + count,
-            })
-            .then(() => {
-                setOrderPlaced(true);
-                setShowOrderForm(false);
-                setName("");
-                setEmail("");
-                setAddress("");
-                setNumber("");
-                setCity("");
-                window.location.replace('/orderPlaced')
-            })
-            .catch((error) => console.log(error));
     };
 
     const getAddressBasedOnSelectedDeliveryOptionType = () => {
@@ -489,8 +494,8 @@ const Cart = () => {
                     </div>
                     <hr />
 
-                    <button className="btn button-order markf" onClick={createOrder}>
-                        Поръчай
+                    <button className="btn button-order markf" onClick={createOrder} disabled={isOrdering}>
+                        {isOrdering ? 'Пренасочване...' : 'Поръчай'}
                     </button>
                 </form>
             </div>
