@@ -240,7 +240,7 @@ const Cart = () => {
       macachalRepository
         .getEcontOfficesInBulgaria()
         .then((data) => {
-          let officeNameAndFullAddress = `${office.name} (${office.address.fullAddress})`.trim();
+          let officeNameAndFullAddress = `${office.name} (${office.address.fullAddress.trim()})`;
           let offices = data.offices.map((office) => ({
             value: officeNameAndFullAddress,
             label: officeNameAndFullAddress,
