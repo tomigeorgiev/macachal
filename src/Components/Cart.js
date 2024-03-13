@@ -243,7 +243,7 @@ const Cart = () => {
         .then((data) => {
           let offices = data.offices.map((office) => ({
             value: office.name,
-            label: office.name,
+            label: `${office.name} (${office.address.fullAddress})`,
           }));
           setEcontOfficesInBulgaria(offices);
         })
