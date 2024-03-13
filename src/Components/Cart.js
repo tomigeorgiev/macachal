@@ -147,9 +147,8 @@ const Cart = () => {
                 </h5>
               </div>
               <div
-                className={`col-5 font-large ltr-space mb-2 ${
-                  isWideScreen ? " d-flex justify-content-end" : ""
-                } text-right`}
+                className={`col-5 font-large ltr-space mb-2 ${isWideScreen ? " d-flex justify-content-end" : ""
+                  } text-right`}
               >
                 <h4 className="markf">
                   {(localStorage.getItem("addedToCart") === "added" &&
@@ -242,7 +241,7 @@ const Cart = () => {
         .getEcontOfficesInBulgaria()
         .then((data) => {
           let offices = data.offices.map((office) => ({
-            value: office.name,
+            value: `${office.name} (${office.address.fullAddress})`,
             label: `${office.name} (${office.address.fullAddress})`,
           }));
           setEcontOfficesInBulgaria(offices);
@@ -296,9 +295,8 @@ const Cart = () => {
 
       <div
         id="orderForm"
-        className={`container orderForm py-5 my-5 ${
-          showOrderForm ? "d-flex justify-content-center" : "d-none"
-        }`}
+        className={`container orderForm py-5 my-5 ${showOrderForm ? "d-flex justify-content-center" : "d-none"
+          }`}
       >
         <button
           className="btn btn-danger posbtn"
