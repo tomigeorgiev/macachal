@@ -247,11 +247,11 @@ const Cart = () => {
     }
   }, [orderPlaced]);
 
-  const customNoOptionsMessage = (inputValue) => (
+  const customNoOptionsMessage = ({ inputValue }) => (
     <div>Няма намерени офиси за "{inputValue}"</div>
   );
 
-  const customLoadingMessage = (_) => (
+  const customLoadingMessage = ({ _ }) => (
     <div>Зареждане...</div>
   )
 
@@ -423,7 +423,6 @@ const Cart = () => {
                 className="basic-single"
                 classNamePrefix="select"
                 placeholder="Офис на Еконт"
-                value={address}
                 loadingMessage={customLoadingMessage}
                 noOptionsMessage={customNoOptionsMessage}
                 onChange={(e) => setAddress(e)}
