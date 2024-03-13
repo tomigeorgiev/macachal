@@ -9,6 +9,7 @@ import Cart from './Components/Cart';
 import About from './Components/About';
 import Order from './Components/Order'
 import Privacyr from './Components/privacy'
+import OrderDone from './Components/OrderDone';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
-          {/* <Route path="/order" element={<Order />} /> */}
+          <Route path="/orderPlaced" element={<OrderDone />} />
           <Route path="/privacy" element={<Privacyr />} />
         </Routes>
       </Router>
