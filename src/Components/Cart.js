@@ -8,6 +8,10 @@ import box2 from "./images/products image.png";
 import MacachalRepository from "../data/macachal_repository";
 
 const manicureCardsSKU = "MCC1";
+const deliveryOptionType = {
+  home: "home",
+  econtOffice: "econtOffice"
+};
 
 const Cart = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
@@ -19,7 +23,7 @@ const Cart = () => {
   const [city, setCity] = useState("");
   const [showOrderForm, setShowOrderForm] = useState(false); // Initially false
   const [orderPlaced, setOrderPlaced] = useState(false);
-  const [deliveryOption, setDeliveryOption] = useState("home");
+  const [deliveryOption, setDeliveryOption] = useState(deliveryOptionType.home);
   const [econtOfficesInBulgaria, setEcontOfficesInBulgaria] = useState([]);
 
   const macachalRepository = new MacachalRepository();
@@ -31,6 +35,8 @@ const Cart = () => {
     const max = 999999;
     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
+    let addressBasedOnSelectedDeliveryOptionType = getAddressBasedOnSelectedDeliveryOptionType();
+
     macachalRepository
       .createOrder({
         id: randomNumber,
@@ -39,7 +45,7 @@ const Cart = () => {
         customer_email: email,
         country: "Bulgaria",
         city: city,
-        address: address,
+        address: addressBasedOnSelectedDeliveryOptionType,
         payment_method: "Наложен платеж",
         order_total_amount: totalPriceFormatted,
         currency: "BGN",
@@ -57,19 +63,27 @@ const Cart = () => {
       .catch((error) => console.log(error));
   };
 
+  const getAddressBasedOnSelectedDeliveryOptionType = () => {
+    if (deliveryOption === deliveryOptionType.econtOffice) {
+      return address.value;
+    } else {
+      return address;
+    }
+  };
+
   let itemPrice = 49.9;
 
   const boxWeight = 150;
   const totalWeight = count * boxWeight;
 
   let deliveryPrice;
-  if (deliveryOption === "home") {
+  if (deliveryOption === deliveryOptionType.home) {
     if (totalWeight <= 1000) {
       deliveryPrice = 4.55 * 1.2;
     } else {
       deliveryPrice = 5.42 * 1.2;
     }
-  } else if (deliveryOption === "office") {
+  } else if (deliveryOption === deliveryOptionType.econtOffice) {
     if (totalWeight <= 1000) {
       deliveryPrice = 3.67 * 1.2;
     } else {
@@ -233,10 +247,19 @@ const Cart = () => {
     }
   }, [orderPlaced]);
 
+  const customNoOptionsMessage = (inputValue) => (
+    <div>Няма намерени офиси за "{inputValue}"</div>
+  );
+
+  const customLoadingMessage = (_) => (
+    <div>Зареждане...</div>
+  )
+
   const handleDeliveryOptionChange = async (option) => {
+    setAddress("");
     setDeliveryOption(option);
 
-    if (option === "office" && econtOfficesInBulgaria.length === 0) {
+    if (option === deliveryOptionType.econtOffice && econtOfficesInBulgaria.length === 0) {
       macachalRepository
         .getEcontOfficesInBulgaria()
         .then((data) => {
@@ -252,7 +275,7 @@ const Cart = () => {
           setEcontOfficesInBulgaria(offices);
         })
         .catch((error) => {
-          setDeliveryOption("home");
+          setDeliveryOption(deliveryOptionType.home);
           console.log(error);
         });
     }
@@ -371,9 +394,9 @@ const Cart = () => {
                 type="radio"
                 name="deliveryOption"
                 id="homeDelivery"
-                value="home"
-                checked={deliveryOption === "home"}
-                onChange={() => handleDeliveryOptionChange("home")}
+                value={deliveryOptionType.home}
+                checked={deliveryOption === deliveryOptionType.home}
+                onChange={() => handleDeliveryOptionChange(deliveryOptionType.home)}
               />
               <label className="form-check-label" htmlFor="homeDelivery">
                 До адрес
@@ -385,20 +408,25 @@ const Cart = () => {
                 type="radio"
                 name="deliveryOption"
                 id="officeDelivery"
-                value="office"
-                checked={deliveryOption === "office"}
-                onChange={() => handleDeliveryOptionChange("office")}
+                value={deliveryOptionType.econtOffice}
+                checked={deliveryOption === deliveryOptionType.econtOffice}
+                onChange={() => handleDeliveryOptionChange(deliveryOptionType.econtOffice)}
               />
               <label className="form-check-label" htmlFor="officeDelivery">
                 До офис на Еконт
               </label>
             </div>
           </div>
-          {deliveryOption === "office" ? (
+          {deliveryOption === deliveryOptionType.econtOffice ? (
             <div className="mb-3">
               <Select
                 className="basic-single"
                 classNamePrefix="select"
+                placeholder="Офис на Еконт"
+                value={address}
+                loadingMessage={customLoadingMessage}
+                noOptionsMessage={customNoOptionsMessage}
+                onChange={(e) => setAddress(e)}
                 isLoading={econtOfficesInBulgaria.length === 0}
                 isClearable="true"
                 isSearchable="true"
