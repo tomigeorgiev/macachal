@@ -63,10 +63,9 @@ const Cart = () => {
                 setAddress("");
                 setNumber("");
                 setCity("");
+                window.location.replace('/orderPlaced')
             })
             .catch((error) => console.log(error));
-
-        window.location.replace('/orderPlaced')
     };
 
     const getAddressBasedOnSelectedDeliveryOptionType = () => {
