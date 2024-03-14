@@ -4,7 +4,7 @@ const url = "https://macabe.netlify.app/api";
 
 class MacachalRepository {
   constructor() {
-    this.httpClient = new HttpClient(url, false);
+    this.httpClient = new HttpClient(url);
   }
 
   // Method to create a new order

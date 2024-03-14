@@ -1,19 +1,34 @@
 import axios from "axios";
 
 class HttpClient {
-  constructor(baseURL, needAuthorization, token) {
-    const headers = {
-      Accept: "application/json",
-    };
-
-    if (needAuthorization) {
-      headers["Authorization"] = token ? `Bearer ${token}` : null;
-    }
-
+  constructor(baseURL, headers, basicAuthCredentials) {
     this.instance = axios.create({
       baseURL: baseURL,
       headers: headers,
+      auth: basicAuthCredentials,
     });
+  }
+
+  static withBearerToken(baseURL, token) {
+    const headers = {
+      "Accept": "application/json",
+      "Authorization": token ? `Bearer ${token}` : null,
+    };
+
+    return new HttpClient(baseURL, headers);
+  }
+
+  static withHTTPBasicAuthentication(baseURL, username, password) {
+    const headers = {
+      "Accept": "application/json",
+    };
+
+    let basicAuthCredentials = {
+      username: username,
+      password: password
+    };
+
+    return new HttpClient(baseURL, headers, basicAuthCredentials);
   }
 
   // Method to make a GET request
