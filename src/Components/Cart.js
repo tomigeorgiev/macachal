@@ -462,6 +462,21 @@ const Cart = () => {
               isLoading={econtCities.length === 0}
               options={econtCities}
               value={city}
+              styles={{
+                placeholder: (base) => ({
+                  ...base,
+                  textAlign: "left",
+                }),
+                singleValue: (base) => ({
+                  ...base,
+                  textAlign: "left",
+                }),
+                option: (base) => ({
+                  ...base,
+                  color: "black",
+                  textAlign: "left",
+                }),
+              }}
             />
             {formErrors.city && <div className="error-message">{formErrors.city}</div>}
           </div>
@@ -514,6 +529,21 @@ const Cart = () => {
                 isLoading={econtOffices.length === 0 && city !== null}
                 options={econtOffices}
                 value={econtOfficeAddress}
+                styles={{
+                  placeholder: (base) => ({
+                    ...base,
+                    textAlign: "left",
+                  }),
+                  singleValue: (base) => ({
+                    ...base,
+                    textAlign: "left",
+                  }),
+                  option: (base) => ({
+                    ...base,
+                    color: "black",
+                    textAlign: "left",
+                  }),
+                }}
               />
               {formErrors.econtOfficeAddress && <div className="error-message">{formErrors.econtOfficeAddress}</div>}
             </div>
