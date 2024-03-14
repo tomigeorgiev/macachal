@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import Swal from 'sweetalert2';
 import "./cust.css";
 import macalogo from "./images/maca.new.png";
 import box from "./images/products image2-min.png";
@@ -49,6 +50,7 @@ const Cart = () => {
       })
       .catch((error) => {
         console.log(error);
+        showAlertError("Грешка при изтегляне на населени места.", "Моля опитайте отново.");
       });
   };
 
@@ -69,6 +71,7 @@ const Cart = () => {
       })
       .catch((error) => {
         console.log(error);
+        showAlertError("Грешка при изтегляне на офиси на Еконт.", "Моля опитайте отново.");
       });
   };
 
@@ -106,11 +109,24 @@ const Cart = () => {
       setEcontOfficeAddress(null);
       navigate('/orderPlaced');
     }).catch((error) => {
-      console.log(error)
+      console.log(error);
+      showAlertError("Грешка при създаване на поръчка.", "Моля опитайте отново.");
     }).finally(() => {
       setIsOrdering(false);
     });
 
+  };
+
+  const showAlertError = (title, text) => {
+    Swal.fire({
+      position: "top-end",
+      icon: "warning",
+      toast: "true",
+      title: title,
+      text: text,
+      showConfirmButton: false,
+      timer: 8000,
+    });
   };
 
   const getAddressBasedOnSelectedDeliveryOptionType = () => {
