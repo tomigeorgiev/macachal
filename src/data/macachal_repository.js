@@ -16,10 +16,19 @@ class MacachalRepository {
     }
   }
 
-  // Method to get all econt offices in Bulgaria
-  async getEcontOfficesInBulgaria() {
+  // Method to get all cities in Bulgaria
+  async getEcontCitiesInBulgaria() {
     try {
-      return await this.httpClient.get("/econt/offices?countryCode=BGR");
+      return await this.httpClient.get("/econt/cities?countryCode=BGR");
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Method to get all econt offices in Bulgaria by cityId
+  async getEcontOfficesInBulgariaByCityId(cityId) {
+    try {
+      return await this.httpClient.get(`/econt/offices?countryCode=BGR&cityId=${cityId}`);
     } catch (error) {
       throw error;
     }

@@ -6,8 +6,6 @@ import box from "./images/products image2-min.png";
 import Footer from "./Footer";
 import box2 from "./images/products image.png";
 import MacachalRepository from "../data/macachal_repository";
-
-import OrderDone from "./OrderDone";
 import { useNavigate } from 'react-router-dom';
 
 const manicureCardsSKU = "MCC1";
@@ -22,18 +20,57 @@ const Cart = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [econtOfficeAddress, setEcontOfficeAddress] = useState(null);
   const [number, setNumber] = useState("");
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(null);
+  const [econtCities, setEcontCities] = useState([]);
   const [showOrderForm, setShowOrderForm] = useState(false); // Initially false
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState(deliveryOptionType.home);
-  const [econtOfficesInBulgaria, setEcontOfficesInBulgaria] = useState([]);
+  const [econtOfficeAddress, setEcontOfficeAddress] = useState(null);
+  const [econtOffices, setEcontOffices] = useState([]);
   const [formErrors, setFormErrors] = useState({});
   const [isOrdering, setIsOrdering] = useState(false);
 
   const macachalRepository = new MacachalRepository();
   const navigate = useNavigate();
+
+
+  const fetchEcontCitiesInBulgaria = () => {
+    macachalRepository
+      .getEcontCitiesInBulgaria()
+      .then((data) => {
+        let cities = data.map((city) => ({
+          value: city.id,
+          label: city.name,
+        }
+        ));
+
+        setEcontCities(cities);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const fetchEcontOfficesInBulgariaByCityId = (cityId) => {
+    macachalRepository
+      .getEcontOfficesInBulgariaByCityId(cityId)
+      .then((data) => {
+        let offices = data.map((office) => {
+          let officeNameAndFullAddress = `${office.name} (${office.fullAddress})`;
+
+          return {
+            value: officeNameAndFullAddress,
+            label: officeNameAndFullAddress,
+          }
+        });
+
+        setEcontOffices(offices);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const createOrder = (event) => {
     event.preventDefault();
@@ -45,13 +82,14 @@ const Cart = () => {
     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
     let addressBasedOnSelectedDeliveryOptionType = getAddressBasedOnSelectedDeliveryOptionType();
+
     macachalRepository.createOrder({
       id: randomNumber,
       customer_name: name,
       customer_phone: number,
       customer_email: email,
       country: "Bulgaria",
-      city: city,
+      city: city.label,
       address: addressBasedOnSelectedDeliveryOptionType,
       payment_method: "Наложен платеж",
       order_total_amount: totalPriceFormatted,
@@ -64,7 +102,8 @@ const Cart = () => {
       setEmail("");
       setAddress("");
       setNumber("");
-      setCity("");
+      setCity(null);
+      setEcontOfficeAddress(null);
       navigate('/orderPlaced');
     }).catch((error) => {
       console.log(error)
@@ -236,6 +275,8 @@ const Cart = () => {
   };
 
   useEffect(() => {
+    fetchEcontCitiesInBulgaria();
+
     const handleResize = () => {
       setIsWideScreen(window.innerWidth > 600);
     };
@@ -258,38 +299,33 @@ const Cart = () => {
     }
   }, [orderPlaced]);
 
-  const customNoOptionsMessage = ({ inputValue }) => (
-    <div>Няма намерени офиси за "{inputValue}"</div>
+  const selectNoOptionsMessage = ({ inputValue }) => (
+    <div>Няма намерени резултати за "{inputValue}"</div>
   );
 
-  const customLoadingMessage = ({ _ }) => (
+  const selectLoadingMessage = ({ _ }) => (
     <div>Зареждане...</div>
   )
 
-  const handleDeliveryOptionChange = async (option) => {
+  const handleCityChange = (city) => {
+    setCity(city);
     setAddress("");
     setEcontOfficeAddress(null);
+    setEcontOffices([]);
+
+    if (deliveryOption === deliveryOptionType.econtOffice && city !== null) {
+      fetchEcontOfficesInBulgariaByCityId(city.value);
+    }
+  };
+
+  const handleDeliveryOptionChange = (option) => {
+    setAddress("");
+    setEcontOfficeAddress(null);
+    setEcontOffices([]);
     setDeliveryOption(option);
 
-    if (option === deliveryOptionType.econtOffice && econtOfficesInBulgaria.length === 0) {
-      macachalRepository
-        .getEcontOfficesInBulgaria()
-        .then((data) => {
-          let offices = data.offices.map((office) => {
-            let officeNameAndFullAddress = `${office.name} (${office.address.fullAddress.trim()})`;
-
-            return {
-              value: officeNameAndFullAddress,
-              label: officeNameAndFullAddress,
-            }
-          });
-
-          setEcontOfficesInBulgaria(offices);
-        })
-        .catch((error) => {
-          setDeliveryOption(deliveryOptionType.home);
-          console.log(error);
-        });
+    if (option === deliveryOptionType.econtOffice && city !== null) {
+      fetchEcontOfficesInBulgariaByCityId(city.value);
     }
   };
 
@@ -301,8 +337,8 @@ const Cart = () => {
     if (!name.trim()) errors.name = 'Имената са задължителни.';
     if (!emailRegex.test(email)) errors.email = 'Имейлът не е валиден.';
     if (!phoneRegex.test(number) || number.length < 10) errors.number = 'Телефонният номер не е валиден.';
-    if (!city.trim()) errors.city = 'Градът е задължителен.';
-    if (deliveryOption === deliveryOptionType.home && !address.trim()) errors.address = 'Адресът е задължителен.';
+    if (city === null) errors.city = 'Моля въведете населено място.';
+    if (deliveryOption === deliveryOptionType.home && !address.trim()) errors.address = 'Моля въведете адрес.';
     if (deliveryOption === deliveryOptionType.econtOffice && econtOfficeAddress === null) errors.econtOfficeAddress = 'Моля изберете офис на Еконт.';
 
     setFormErrors(errors);
@@ -412,14 +448,20 @@ const Cart = () => {
             {formErrors.email && <div className="error-message">{formErrors.email}</div>}
           </div>
           <div className="mb-3">
-            <input
-              type="text"
-              placeholder="Град"
-              className="form-control"
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              placeholder="Населено място"
+              required="true"
+              isClearable="true"
+              isSearchable="true"
+              name="city"
+              loadingMessage={selectLoadingMessage}
+              noOptionsMessage={selectNoOptionsMessage}
+              onChange={handleCityChange}
+              isLoading={econtCities.length === 0}
+              options={econtCities}
               value={city}
-              onChange={(e) => setCity(e.target.value)}
-              id="address"
-              name="address"
             />
             {formErrors.city && <div className="error-message">{formErrors.city}</div>}
           </div>
@@ -430,6 +472,7 @@ const Cart = () => {
                 type="radio"
                 name="deliveryOption"
                 id="homeDelivery"
+                disabled={!city}
                 value={deliveryOptionType.home}
                 checked={deliveryOption === deliveryOptionType.home}
                 onChange={() => handleDeliveryOptionChange(deliveryOptionType.home)}
@@ -444,6 +487,7 @@ const Cart = () => {
                 type="radio"
                 name="deliveryOption"
                 id="officeDelivery"
+                disabled={!city}
                 value={deliveryOptionType.econtOffice}
                 checked={deliveryOption === deliveryOptionType.econtOffice}
                 onChange={() => handleDeliveryOptionChange(deliveryOptionType.econtOffice)}
@@ -459,15 +503,17 @@ const Cart = () => {
                 className="basic-single"
                 classNamePrefix="select"
                 placeholder="Офис на Еконт"
-                loadingMessage={customLoadingMessage}
-                noOptionsMessage={customNoOptionsMessage}
-                onChange={(e) => setEcontOfficeAddress(e)}
-                isLoading={econtOfficesInBulgaria.length === 0}
                 required="true"
                 isClearable="true"
                 isSearchable="true"
+                isDisabled={!city}
                 name="econtOfficesInBulgaria"
-                options={econtOfficesInBulgaria}
+                loadingMessage={selectLoadingMessage}
+                noOptionsMessage={selectNoOptionsMessage}
+                onChange={(e) => setEcontOfficeAddress(e)}
+                isLoading={econtOffices.length === 0 && city !== null}
+                options={econtOffices}
+                value={econtOfficeAddress}
               />
               {formErrors.econtOfficeAddress && <div className="error-message">{formErrors.econtOfficeAddress}</div>}
             </div>
@@ -477,6 +523,7 @@ const Cart = () => {
                 type="text"
                 placeholder="Адрес"
                 className="form-control"
+                disabled={!city}
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 id="address"
