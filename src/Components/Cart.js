@@ -22,12 +22,12 @@ const Cart = () => {
   const [address, setAddress] = useState("");
   const [number, setNumber] = useState("");
   const [city, setCity] = useState(null);
-  const [econtCities, setEcontCities] = useState([]);
+  const [econtCities, setEcontCities] = useState(null);
   const [showOrderForm, setShowOrderForm] = useState(false); // Initially false
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState(deliveryOptionType.home);
   const [econtOfficeAddress, setEcontOfficeAddress] = useState(null);
-  const [econtOffices, setEcontOffices] = useState([]);
+  const [econtOffices, setEcontOffices] = useState(null);
   const [formErrors, setFormErrors] = useState({});
   const [isOrdering, setIsOrdering] = useState(false);
 
@@ -300,7 +300,7 @@ const Cart = () => {
   }, [orderPlaced]);
 
   const selectNoOptionsMessage = ({ inputValue }) => (
-    <div>Няма намерени резултати за "{inputValue}"</div>
+    <div>Няма намерени резултати{inputValue === null || inputValue === "" ? "" : ` за "${inputValue}"`}</div>
   );
 
   const selectLoadingMessage = ({ _ }) => (
@@ -311,7 +311,7 @@ const Cart = () => {
     setCity(city);
     setAddress("");
     setEcontOfficeAddress(null);
-    setEcontOffices([]);
+    setEcontOffices(null);
 
     if (deliveryOption === deliveryOptionType.econtOffice && city !== null) {
       fetchEcontOfficesInBulgariaByCityId(city.value);
@@ -321,7 +321,7 @@ const Cart = () => {
   const handleDeliveryOptionChange = (option) => {
     setAddress("");
     setEcontOfficeAddress(null);
-    setEcontOffices([]);
+    setEcontOffices(null);
     setDeliveryOption(option);
 
     if (option === deliveryOptionType.econtOffice && city !== null) {
@@ -459,8 +459,8 @@ const Cart = () => {
               loadingMessage={selectLoadingMessage}
               noOptionsMessage={selectNoOptionsMessage}
               onChange={handleCityChange}
-              isLoading={econtCities.length === 0}
-              options={econtCities}
+              isLoading={econtCities === null}
+              options={econtCities ?? []}
               value={city}
               styles={{
                 placeholder: (base) => ({
@@ -526,8 +526,8 @@ const Cart = () => {
                 loadingMessage={selectLoadingMessage}
                 noOptionsMessage={selectNoOptionsMessage}
                 onChange={(e) => setEcontOfficeAddress(e)}
-                isLoading={econtOffices.length === 0 && city !== null}
-                options={econtOffices}
+                isLoading={econtOffices === null && city !== null}
+                options={econtOffices ?? []}
                 value={econtOfficeAddress}
                 styles={{
                   placeholder: (base) => ({
