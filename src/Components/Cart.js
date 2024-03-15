@@ -92,7 +92,7 @@ const Cart = () => {
       customer_name: `${firstName} ${lastName}`,
       customer_phone: number,
       customer_email: email,
-      country: "Bulgaria",
+      country: "България",
       city: city.label,
       address: addressBasedOnSelectedDeliveryOptionType,
       payment_method: "Наложен платеж",
@@ -133,7 +133,7 @@ const Cart = () => {
 
   const getAddressBasedOnSelectedDeliveryOptionType = () => {
     if (deliveryOption === deliveryOptionType.econtOffice) {
-      return econtOfficeAddress.value;
+      return `Офис Еконт: ${econtOfficeAddress.value}`;
     } else {
       return address;
     }
