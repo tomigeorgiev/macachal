@@ -18,7 +18,8 @@ const deliveryOptionType = {
 const Cart = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
   const [count, setCount] = useState(1);
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [number, setNumber] = useState("");
@@ -88,7 +89,7 @@ const Cart = () => {
 
     macachalRepository.createOrder({
       id: randomNumber,
-      customer_name: name,
+      customer_name: `${firstName} ${lastName}`,
       customer_phone: number,
       customer_email: email,
       country: "Bulgaria",
@@ -101,7 +102,8 @@ const Cart = () => {
     }).then(() => {
       setOrderPlaced(true);
       setShowOrderForm(false);
-      setName("");
+      setFirstName("");
+      setLastName("");
       setEmail("");
       setAddress("");
       setNumber("");
@@ -145,15 +147,15 @@ const Cart = () => {
   let deliveryPrice;
   if (deliveryOption === deliveryOptionType.home) {
     if (totalWeight <= 1000) {
-      deliveryPrice = 4.55 * 1.2;
+      deliveryPrice = 6.9;
     } else {
-      deliveryPrice = 5.42 * 1.2;
+      deliveryPrice = 0;
     }
   } else if (deliveryOption === deliveryOptionType.econtOffice) {
     if (totalWeight <= 1000) {
-      deliveryPrice = 3.67 * 1.2;
+      deliveryPrice = 5.9;
     } else {
-      deliveryPrice = 4.55 * 1.2;
+      deliveryPrice = 0;
     }
   }
 
@@ -350,7 +352,8 @@ const Cart = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9]+$/;
 
-    if (!name.trim()) errors.name = 'Имената са задължителни.';
+    if (!firstName.trim()) errors.firstName = 'Моля въведете име.';
+    if (!lastName.trim()) errors.lastName = 'Моля въведете фамилия.';
     if (!emailRegex.test(email)) errors.email = 'Имейлът не е валиден.';
     if (!phoneRegex.test(number) || number.length < 10) errors.number = 'Телефонният номер не е валиден.';
     if (city === null) errors.city = 'Моля въведете населено място.';
@@ -430,13 +433,25 @@ const Cart = () => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Две имена"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                id="name"
-                name="name"
+                placeholder="Име"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                id="firstName"
+                name="firstName"
               />
-              {formErrors.name && <div className="error-message">{formErrors.name}</div>}
+              {formErrors.firstName && <div className="error-message">{formErrors.firstName}</div>}
+            </div>
+            <div className="col">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Фамилия"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                id="lastName"
+                name="lastName"
+              />
+              {formErrors.lastName && <div className="error-message">{formErrors.lastName}</div>}
             </div>
             <div className="col">
               <input
