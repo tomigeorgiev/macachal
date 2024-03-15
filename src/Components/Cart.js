@@ -429,7 +429,7 @@ const Cart = () => {
             </h4>
           </div>
           <div className="row mb-3">
-            <div className="col">
+            <div className="col-md mb-3 mb-md-0">
               <input
                 type="text"
                 className="form-control"
@@ -441,7 +441,7 @@ const Cart = () => {
               />
               {formErrors.firstName && <div className="error-message">{formErrors.firstName}</div>}
             </div>
-            <div className="col">
+            <div className="col-md mb-3 mb-md-0">
               <input
                 type="text"
                 className="form-control"
@@ -453,7 +453,7 @@ const Cart = () => {
               />
               {formErrors.lastName && <div className="error-message">{formErrors.lastName}</div>}
             </div>
-            <div className="col">
+            <div className="col-md">
               <input
                 type="tel"
                 placeholder="Телефонен Номер"
