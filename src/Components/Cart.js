@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import "./cust.css";
 import macalogo from "./images/maca.new.png";
 import box from "./images/products image2-min.png";
 import Footer from "./Footer";
 import box2 from "./images/products image.png";
 import MacachalRepository from "../data/macachal_repository";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const manicureCardsSKU = "MCC1";
 const deliveryOptionType = {
   home: "home",
-  econtOffice: "econtOffice"
+  econtOffice: "econtOffice",
 };
 
 const Cart = () => {
@@ -36,7 +36,6 @@ const Cart = () => {
   const macachalRepository = new MacachalRepository();
   const navigate = useNavigate();
 
-
   const fetchEcontCitiesInBulgaria = () => {
     macachalRepository
       .getEcontCitiesInBulgaria()
@@ -44,14 +43,16 @@ const Cart = () => {
         let cities = data.map((city) => ({
           value: city.id,
           label: city.name,
-        }
-        ));
+        }));
 
         setEcontCities(cities);
       })
       .catch((error) => {
         console.log(error);
-        showAlertError("Грешка при изтегляне на населени места.", "Моля опитайте отново.");
+        showAlertError(
+          "Грешка при изтегляне на населени места.",
+          "Моля презаредете страницата."
+        );
       });
   };
 
@@ -65,14 +66,17 @@ const Cart = () => {
           return {
             value: officeNameAndFullAddress,
             label: officeNameAndFullAddress,
-          }
+          };
         });
 
         setEcontOffices(offices);
       })
       .catch((error) => {
         console.log(error);
-        showAlertError("Грешка при изтегляне на офиси на Еконт.", "Моля опитайте отново.");
+        showAlertError(
+          "Грешка при изтегляне на офиси на Еконт.",
+          "Моля презаредете страницата."
+        );
       });
   };
 
@@ -85,38 +89,45 @@ const Cart = () => {
     const max = 999999;
     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    let addressBasedOnSelectedDeliveryOptionType = getAddressBasedOnSelectedDeliveryOptionType();
+    let addressBasedOnSelectedDeliveryOptionType =
+      getAddressBasedOnSelectedDeliveryOptionType();
 
-    macachalRepository.createOrder({
-      id: randomNumber,
-      customer_name: `${firstName} ${lastName}`,
-      customer_phone: number,
-      customer_email: email,
-      country: "България",
-      city: city.label,
-      address: addressBasedOnSelectedDeliveryOptionType,
-      payment_method: "Наложен платеж",
-      order_total_amount: totalPriceFormatted,
-      currency: "BGN",
-      products: manicureCardsSKU + ":" + count,
-    }).then(() => {
-      setOrderPlaced(true);
-      setShowOrderForm(false);
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setAddress("");
-      setNumber("");
-      setCity(null);
-      setEcontOfficeAddress(null);
-      navigate('/orderPlaced');
-    }).catch((error) => {
-      console.log(error);
-      showAlertError("Грешка при създаване на поръчка.", "Моля опитайте отново.");
-    }).finally(() => {
-      setIsOrdering(false);
-    });
-
+    macachalRepository
+      .createOrder({
+        id: randomNumber,
+        customer_name: `${firstName} ${lastName}`,
+        customer_phone: number,
+        customer_email: email,
+        country: "България",
+        city: city.label,
+        address: addressBasedOnSelectedDeliveryOptionType,
+        payment_method: "Наложен платеж",
+        order_total_amount: totalPriceFormatted,
+        currency: "BGN",
+        products: manicureCardsSKU + ":" + count,
+      })
+      .then(() => {
+        setOrderPlaced(true);
+        setShowOrderForm(false);
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setAddress("");
+        setNumber("");
+        setCity(null);
+        setEcontOfficeAddress(null);
+        navigate("/orderPlaced");
+      })
+      .catch((error) => {
+        console.log(error);
+        showAlertError(
+          "Грешка при създаване на поръчка.",
+          "Моля опитайте отново."
+        );
+      })
+      .finally(() => {
+        setIsOrdering(false);
+      });
   };
 
   const showAlertError = (title, text) => {
@@ -229,8 +240,9 @@ const Cart = () => {
                 </h5>
               </div>
               <div
-                className={`col-5 font-large ltr-space mb-2 ${isWideScreen ? " d-flex justify-content-end" : ""
-                  } text-right`}
+                className={`col-5 font-large ltr-space mb-2 ${
+                  isWideScreen ? " d-flex justify-content-end" : ""
+                } text-right`}
               >
                 <h4 className="markf">
                   {(localStorage.getItem("addedToCart") === "added" &&
@@ -318,12 +330,13 @@ const Cart = () => {
   }, [orderPlaced]);
 
   const selectNoOptionsMessage = ({ inputValue }) => (
-    <div>Няма намерени резултати{inputValue === null || inputValue === "" ? "" : ` за "${inputValue}"`}</div>
+    <div>
+      Няма намерени резултати
+      {inputValue === null || inputValue === "" ? "" : ` за "${inputValue}"`}
+    </div>
   );
 
-  const selectLoadingMessage = ({ _ }) => (
-    <div>Зареждане...</div>
-  )
+  const selectLoadingMessage = ({ _ }) => <div>Зареждане...</div>;
 
   const handleCityChange = (city) => {
     setCity(city);
@@ -352,13 +365,19 @@ const Cart = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9]+$/;
 
-    if (!firstName.trim()) errors.firstName = 'Моля въведете име.';
-    if (!lastName.trim()) errors.lastName = 'Моля въведете фамилия.';
-    if (!emailRegex.test(email)) errors.email = 'Имейлът не е валиден.';
-    if (!phoneRegex.test(number) || number.length < 10) errors.number = 'Телефонният номер не е валиден.';
-    if (city === null) errors.city = 'Моля въведете населено място.';
-    if (deliveryOption === deliveryOptionType.home && !address.trim()) errors.address = 'Моля въведете адрес.';
-    if (deliveryOption === deliveryOptionType.econtOffice && econtOfficeAddress === null) errors.econtOfficeAddress = 'Моля изберете офис на Еконт.';
+    if (!firstName.trim()) errors.firstName = "Моля въведете име.";
+    if (!lastName.trim()) errors.lastName = "Моля въведете фамилия.";
+    if (!emailRegex.test(email)) errors.email = "Имейлът не е валиден.";
+    if (!phoneRegex.test(number) || number.length < 10)
+      errors.number = "Телефонният номер не е валиден.";
+    if (city === null) errors.city = "Моля въведете населено място.";
+    if (deliveryOption === deliveryOptionType.home && !address.trim())
+      errors.address = "Моля въведете адрес.";
+    if (
+      deliveryOption === deliveryOptionType.econtOffice &&
+      econtOfficeAddress === null
+    )
+      errors.econtOfficeAddress = "Моля изберете офис на Еконт.";
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0; // Return true if no errors
@@ -410,9 +429,12 @@ const Cart = () => {
         <Footer />
       </div>
 
-      <div id="orderForm"
-        className={`container orderForm py-5 my-5 ${showOrderForm ? "d-flex justify-content-center" : "d-none"
-          }`}>
+      <div
+        id="orderForm"
+        className={`container orderForm py-5 my-5 ${
+          showOrderForm ? "d-flex justify-content-center" : "d-none"
+        }`}
+      >
         <button
           className="btn btn-danger posbtn"
           onClick={toggleOrderFormVisibility}
@@ -439,7 +461,9 @@ const Cart = () => {
                 id="firstName"
                 name="firstName"
               />
-              {formErrors.firstName && <div className="error-message">{formErrors.firstName}</div>}
+              {formErrors.firstName && (
+                <div className="error-message">{formErrors.firstName}</div>
+              )}
             </div>
             <div className="col-md mb-3 mb-md-0">
               <input
@@ -451,7 +475,9 @@ const Cart = () => {
                 id="lastName"
                 name="lastName"
               />
-              {formErrors.lastName && <div className="error-message">{formErrors.lastName}</div>}
+              {formErrors.lastName && (
+                <div className="error-message">{formErrors.lastName}</div>
+              )}
             </div>
             <div className="col-md">
               <input
@@ -463,7 +489,9 @@ const Cart = () => {
                 id="phone"
                 name="phone"
               />
-              {formErrors.number && <div className="error-message">{formErrors.number}</div>}
+              {formErrors.number && (
+                <div className="error-message">{formErrors.number}</div>
+              )}
             </div>
           </div>
           <div className="mb-3">
@@ -476,7 +504,9 @@ const Cart = () => {
               id="email"
               name="email"
             />
-            {formErrors.email && <div className="error-message">{formErrors.email}</div>}
+            {formErrors.email && (
+              <div className="error-message">{formErrors.email}</div>
+            )}
           </div>
           <div className="mb-3">
             <Select
@@ -487,6 +517,9 @@ const Cart = () => {
               isClearable="true"
               isSearchable="true"
               name="city"
+              captureMenuScroll="true"
+              menuShouldBlockScroll="true"
+              menuShouldScrollIntoView="true"
               loadingMessage={selectLoadingMessage}
               noOptionsMessage={selectNoOptionsMessage}
               onChange={handleCityChange}
@@ -509,7 +542,9 @@ const Cart = () => {
                 }),
               }}
             />
-            {formErrors.city && <div className="error-message">{formErrors.city}</div>}
+            {formErrors.city && (
+              <div className="error-message">{formErrors.city}</div>
+            )}
           </div>
           <div className="mb-3 d-flex justify-content-center">
             <div className="form-check mx-2">
@@ -521,7 +556,9 @@ const Cart = () => {
                 disabled={!city}
                 value={deliveryOptionType.home}
                 checked={deliveryOption === deliveryOptionType.home}
-                onChange={() => handleDeliveryOptionChange(deliveryOptionType.home)}
+                onChange={() =>
+                  handleDeliveryOptionChange(deliveryOptionType.home)
+                }
               />
               <label className="form-check-label" htmlFor="homeDelivery">
                 До адрес
@@ -536,7 +573,9 @@ const Cart = () => {
                 disabled={!city}
                 value={deliveryOptionType.econtOffice}
                 checked={deliveryOption === deliveryOptionType.econtOffice}
-                onChange={() => handleDeliveryOptionChange(deliveryOptionType.econtOffice)}
+                onChange={() =>
+                  handleDeliveryOptionChange(deliveryOptionType.econtOffice)
+                }
               />
               <label className="form-check-label" htmlFor="officeDelivery">
                 До офис на Еконт
@@ -554,6 +593,9 @@ const Cart = () => {
                 isSearchable="true"
                 isDisabled={!city}
                 name="econtOfficesInBulgaria"
+                captureMenuScroll="true"
+                menuShouldBlockScroll="true"
+                menuShouldScrollIntoView="true"
                 loadingMessage={selectLoadingMessage}
                 noOptionsMessage={selectNoOptionsMessage}
                 onChange={(e) => setEcontOfficeAddress(e)}
@@ -576,7 +618,11 @@ const Cart = () => {
                   }),
                 }}
               />
-              {formErrors.econtOfficeAddress && <div className="error-message">{formErrors.econtOfficeAddress}</div>}
+              {formErrors.econtOfficeAddress && (
+                <div className="error-message">
+                  {formErrors.econtOfficeAddress}
+                </div>
+              )}
             </div>
           ) : (
             <div className="mb-3">
@@ -590,7 +636,9 @@ const Cart = () => {
                 id="address"
                 name="address"
               />
-              {formErrors.address && <div className="error-message">{formErrors.address}</div>}
+              {formErrors.address && (
+                <div className="error-message">{formErrors.address}</div>
+              )}
             </div>
           )}
           <hr />
@@ -607,8 +655,12 @@ const Cart = () => {
           </div>
           <hr />
 
-          <button className="btn button-order markf" onClick={createOrder} disabled={isOrdering}>
-            {isOrdering ? 'Пренасочване...' : 'Поръчай'}
+          <button
+            className="btn button-order markf"
+            onClick={createOrder}
+            disabled={isOrdering}
+          >
+            {isOrdering ? "Пренасочване..." : "Поръчай"}
           </button>
         </form>
       </div>
