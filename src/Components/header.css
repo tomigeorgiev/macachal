@@ -94,7 +94,7 @@
         position: fixed;
         bottom: 30px;
         right: 60px;
-        z-index: 5;
+        z-index: 9999;
     }
 
     .bot a {
@@ -230,7 +230,7 @@
         position: fixed;
         bottom: 30px;
         right: 60px;
-        z-index: 5;
+        z-index: 9999;
     }
 
     .bot a {
@@ -400,7 +400,7 @@
         position: fixed;
         bottom: 20px;
         right: 20px;
-        z-index: 5;
+        z-index: 9999;
         opacity: 0;
         animation: botAppear 1s ease 1s forwards;
     }
