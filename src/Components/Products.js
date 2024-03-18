@@ -16,7 +16,6 @@ const Products = () => {
   const [isActivated, setIsActivated] = useState(false);
   const [selectedImage, setSelectedImage] = useState(box);
 
-  let cartItem = document.getElementById("basket");
   const addToCart = () => {
     localStorage.setItem("addedToCart", "added");
     setAddedToCart(true);
