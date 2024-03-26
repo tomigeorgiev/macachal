@@ -1,15 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import './Components/style.css'
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import "./Components/style.css";
 
-import Index from './Components/Index'
-import Products from './Components/Products'
-import Cart from './Components/Cart';
-import About from './Components/About';
-import Order from './Components/Order'
-import Privacyr from './Components/privacy'
-import OrderDone from './Components/OrderDone';
+import Index from "./Components/Index";
+import Products from "./Components/Products";
+import Cart from "./Components/Cart";
+import About from "./Components/About";
+import Privacyr from "./Components/privacy";
+import OrderDone from "./Components/OrderDone";
 
 function App() {
   return (
