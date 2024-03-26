@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import box2 from "./images/products image.png";
 import MacachalRepository from "../data/macachal_repository";
 import { useNavigate } from "react-router-dom";
+import * as Sentry from "@sentry/react";
 
 const manicureCardsSKU = "MCC1";
 const deliveryOptionType = {
@@ -53,6 +54,7 @@ const Cart = () => {
           "Грешка при изтегляне на населени места.",
           "Моля презаредете страницата."
         );
+        Sentry.captureException(error);
       });
   };
 
@@ -77,6 +79,7 @@ const Cart = () => {
           "Грешка при изтегляне на офиси на Еконт.",
           "Моля презаредете страницата."
         );
+        Sentry.captureException(error);
       });
   };
 
@@ -124,6 +127,7 @@ const Cart = () => {
           "Грешка при създаване на поръчка.",
           "Моля опитайте отново."
         );
+        Sentry.captureException(error);
       })
       .finally(() => {
         setIsOrdering(false);
